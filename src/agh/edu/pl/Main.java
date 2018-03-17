@@ -18,19 +18,22 @@ public class Main {
             case "for": out.write("<symfor>"+ciag+"</symfor>"); break;
             case "do": out.write("<symdo>"+ciag+"</symdo>"); break;
             case "return": out.write("<symreturn>"+ciag+"</symreturn>"); break;
+            case "and": out.write("<symand>"+ciag+"</symand>"); break;
+            case "or": out.write("<symor>"+ciag+"</symor>"); break;
+            case "not": out.write("<symnot>"+ciag+"</symnot>"); break;
             default: out.write("<identyfikator>"+ciag+"</identyfikator>");
-
         }
     }
 
 
-    static void sprawdzaj(char znak) throws IOException {
-        String ciag = ""+znak;
+    static void sprawdzaj(int znak) throws Exception {
+        if(znak < 0) return;
+        String ciag = ""+(char)znak;
 
-        if(znak == ' ' || znak == '\n' || znak == '\t' || znak == '\0' || (int)znak < 30){
-            if(znak != ' ' && znak != '\t')out.write("\n"+"<br>");
-            int liczba = in.read();
-            if(liczba > 0) sprawdzaj((char)in.read());
+        if((char)znak == ' ' || (char)znak == '\n' || (char)znak == '\t' || znak < 30){
+            //koniec lini zapisywany dwoma znakami
+            if((char)znak != ' ' && (char)znak != '\t'){in.read();out.write("\n"+"<br>");}
+             sprawdzaj((char)in.read());
         }
         //System.out.println(znak);
         if( znak >= '0' && znak <= '9'){
@@ -69,18 +72,58 @@ public class Main {
             identyfikatory(ciag);
         } else if(znak == '='){
             int liczba;
-            char litera;
             if((liczba = in.read()) == '='){
-                out.write("<symprzypisanie>"+ciag+"</symprzypisanie>");
-                sprawdzaj(litera);
+                out.write("<symprzypisanie>"+"=="+"</symprzypisanie>");
+                liczba = in.read();
+                sprawdzaj(liczba);
                 return;
             } else {
+                out.write("<symrownosc>"+"="+"</symrownosc>");
+                sprawdzaj(liczba);
+                return;
+            }
+        }else if(znak == '\"'){
+            int liczba;
+            while((liczba = in.read()) > 0){
+                char litera = (char) liczba;
+                if(litera == '\"'){
 
+                    out.write("<string>"+ciag.substring(1)+"</string>");
+                    sprawdzaj(in.read());
+                    return;
+                }
+                ciag +=litera;
 
             }
+            throw new Exception("Niepoprawne cudzysłowy");
 
 
+
+
+        } else if(znak == '+' || znak == '-' || znak == '*' || znak == '/' || znak == '~' ||znak == '>' || znak == '<' || znak == '(' || znak == ')' || znak == '[' || znak == ']' || znak == '{' || znak == '}' || znak == '#' ){
+            switch(znak){
+                case '+': out.write("<symplus>"+"+"+"</symplus>"); break;
+                case '-': out.write("<symminus>"+"-"+"</symminus>"); break;
+                case '*': out.write("<symrazy>"+"*"+"</symrazy>"); break;
+                case '/': out.write("<symdziel>"+"/"+"</symdziel>"); break;
+                case '~': out.write("<symrozne>"+"~"+"</symrozne>"); break;
+                case '>': out.write("<symwieksze>"+">"+"</symwieksze>"); break;
+                case '<': out.write("<symmniejsze>"+"<"+"</symmniejsze>"); break;
+                case '(':
+                case ')': out.write("<symnawiasokragly>"+znak+"</symnawiasokragly>"); break;
+                case '[':
+                case ']': out.write("<symnawiaskwadratowy>"+znak+"</symnawiaskwadratowy>"); break;
+                case '{':
+                case '}': out.write("<symnawiasklamrowy>"+znak+"</symnawiasklamrowy>"); break;
+                case '#': out.write("<symhash>"+"#"+"</symhash>"); break;
+            }
+            int liczba;
+            liczba = in.read();
+            sprawdzaj(liczba);
+            return;
         }
+
+        sprawdzaj(in.read());
 
     }
 
@@ -95,7 +138,7 @@ public class Main {
             int liczba;
             in.read();
 
-            if((liczba = in.read()) != -1) sprawdzaj((char)liczba);
+            if((liczba = in.read()) != -1) sprawdzaj(liczba);
 
             out.write("\n<br></program>");
 
