@@ -14,14 +14,13 @@ public class Main {
         switch(ciag){
             case "if": out.write("<symif>"+ciag+"</symif>"); break;
             case "while": out.write("<symwhile>"+ciag+"</symwhile>"); break;
+            case "else": out.write("<symelse>"+ciag+"</symelse>"); break;
             case "for": out.write("<symfor>"+ciag+"</symfor>"); break;
-            case "": out.write("<symif>"+ciag+"</symif>"); break;
+            case "do": out.write("<symdo>"+ciag+"</symdo>"); break;
+            case "return": out.write("<symreturn>"+ciag+"</symreturn>"); break;
             default: out.write("<identyfikator>"+ciag+"</identyfikator>");
 
-
         }
-
-
     }
 
 
@@ -58,7 +57,7 @@ public class Main {
             while((liczba = in.read()) > 0){
                 litera = (char) liczba;
                 //System.out.println(litera);
-                if(!((litera >= 'a' && litera <= 'z') || (litera >= 'A' && litera <= 'Z'))){
+                if(!((litera >= 'a' && litera <= 'z') || (litera >= 'A' && litera <= 'Z') || (litera >= '0' && litera <= '9'))){
 
                     identyfikatory(ciag);
                     sprawdzaj(litera);
@@ -68,13 +67,20 @@ public class Main {
 
             }
             identyfikatory(ciag);
+        } else if(znak == '='){
+            int liczba;
+            char litera;
+            if((liczba = in.read()) == '='){
+                out.write("<symprzypisanie>"+ciag+"</symprzypisanie>");
+                sprawdzaj(litera);
+                return;
+            } else {
+
+
+            }
+
 
         }
-
-
-
-
-
 
     }
 
@@ -89,12 +95,6 @@ public class Main {
             int liczba;
             in.read();
 
-//            while((liczba = in.read()) != -1){
-//                char litera = (char) liczba;
-//                System.out.println(litera);
-//
-//            }
-
             if((liczba = in.read()) != -1) sprawdzaj((char)liczba);
 
             out.write("\n<br></program>");
@@ -105,7 +105,5 @@ public class Main {
         } catch (Exception e) {
             e.printStackTrace();
         }
-
-
     }
 }
