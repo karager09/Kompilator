@@ -1,0 +1,59 @@
+body {
+    background-color: white;
+}
+
+liczba
+{
+	color:green;
+}
+
+identyfikator
+{
+	color:blue;
+}
+
+symif
+{
+	color:purple;
+}
+
+symfor
+{
+	color:teal;
+}
+
+symwhile
+{
+	color:aqua;
+}
+
+symelse
+{
+	color:maroon;
+}
+
+symdo
+{
+	color:red;
+}
+
+symreturn
+{
+	color:gray;
+}
+
+string
+{
+	color:fuchsia;
+}
+
+symnot, symor, symand
+{
+	color:olive;
+}
+
+symplus, symminus, symrazy, symdziel, symrozne, symwieksze, symmniejsze, symnawiasokragly, symnawiaskwadratowy, symnawiasklamrowy, symhash
+{
+	color:silver;
+}
+
