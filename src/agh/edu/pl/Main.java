@@ -100,22 +100,23 @@ public class Main {
 
 
 
-        } else if(znak == '+' || znak == '-' || znak == '*' || znak == '/' || znak == '~' ||znak == '>' || znak == '<' || znak == '(' || znak == ')' || znak == '[' || znak == ']' || znak == '{' || znak == '}' || znak == '#' ){
+        } else if(znak == '+' || znak == '-' || znak == '*' || znak == '/' || znak == '~' ||znak == '>' || znak == '<' || znak == '(' || znak == ')' || znak == '[' || znak == ']' || znak == '{' || znak == '}' || znak == '#' || znak == ';' ){
             switch(znak){
-                case '+': out.write("<symplus>"+"+"+"</symplus>"); break;
-                case '-': out.write("<symminus>"+"-"+"</symminus>"); break;
-                case '*': out.write("<symrazy>"+"*"+"</symrazy>"); break;
-                case '/': out.write("<symdziel>"+"/"+"</symdziel>"); break;
-                case '~': out.write("<symrozne>"+"~"+"</symrozne>"); break;
-                case '>': out.write("<symwieksze>"+">"+"</symwieksze>"); break;
-                case '<': out.write("<symmniejsze>"+"<"+"</symmniejsze>"); break;
+                case '+': out.write("<symplus>"+(char)znak+"</symplus>"); break;
+                case '-': out.write("<symminus>"+(char)znak+"</symminus>"); break;
+                case '*': out.write("<symrazy>"+(char)znak+"</symrazy>"); break;
+                case '/': out.write("<symdziel>"+(char)znak+"</symdziel>"); break;
+                case '~': out.write("<symrozne>"+(char)znak+"</symrozne>"); break;
+                case '>': out.write("<symwieksze>"+(char)znak+"</symwieksze>"); break;
+                case '<': out.write("<symmniejsze>"+(char)znak+"</symmniejsze>"); break;
                 case '(':
-                case ')': out.write("<symnawiasokragly>"+znak+"</symnawiasokragly>"); break;
+                case ')': out.write("<symnawiasokragly>"+(char)znak+"</symnawiasokragly>"); break;
                 case '[':
-                case ']': out.write("<symnawiaskwadratowy>"+znak+"</symnawiaskwadratowy>"); break;
+                case ']': out.write("<symnawiaskwadratowy>"+(char)znak+"</symnawiaskwadratowy>"); break;
                 case '{':
-                case '}': out.write("<symnawiasklamrowy>"+znak+"</symnawiasklamrowy>"); break;
-                case '#': out.write("<symhash>"+"#"+"</symhash>"); break;
+                case '}': out.write("<symnawiasklamrowy>"+(char)znak+"</symnawiasklamrowy>"); break;
+                case '#': out.write("<symhash>"+(char)znak+"</symhash>"); break;
+                case ';': out.write("<symseparator>"+(char)znak+"</symseparator>"); break;
             }
             int liczba;
             liczba = in.read();
