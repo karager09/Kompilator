@@ -30,19 +30,27 @@ public class Main {
         if(znak < 0) return;
         String ciag = ""+(char)znak;
 
+        //biale znaki
         if((char)znak == ' ' || (char)znak == '\n' || (char)znak == '\t' || znak < 30){
             //koniec lini zapisywany dwoma znakami
             if((char)znak != ' ' && (char)znak != '\t'){in.read();out.write("\n"+"<br>");}
              sprawdzaj((char)in.read());
         }
-        //System.out.println(znak);
-        if( znak >= '0' && znak <= '9'){
+        //liczby
+        else if( znak >= '0' && znak <= '9'){
             int liczba;
             char litera;
+            boolean flaga=false;
             while((liczba = in.read()) > 0){
                 litera = (char) liczba;
                 //System.out.println(litera);
-                if(litera < '0' || litera > '9'){
+                if (litera=='.'){
+                    if(flaga==false) {
+                        flaga = true;
+                    } else {
+                        throw new Exception("Niepoprawna liczba");
+                    }
+                }else if(litera < '0' || litera > '9'){
 
                     out.write("<liczba>"+ciag+"</liczba>");
 
@@ -53,6 +61,7 @@ public class Main {
             }
             out.write("<liczba>"+ciag+"</liczba>");
         }
+        //identyfikatory
         else if( (znak >= 'a' && znak <= 'z') || (znak >= 'A' && znak <= 'Z')){
             //System.out.println(znak);
             int liczba;
@@ -70,7 +79,9 @@ public class Main {
 
             }
             identyfikatory(ciag);
-        } else if(znak == '='){
+        }
+        //=
+        else if(znak == '='){
             int liczba;
             if((liczba = in.read()) == '='){
                 out.write("<symprzypisanie>"+"=="+"</symprzypisanie>");
@@ -82,7 +93,9 @@ public class Main {
                 sprawdzaj(liczba);
                 return;
             }
-        }else if(znak == '\"'){
+        }
+        //string
+        else if(znak == '\"'){
             int liczba;
             while((liczba = in.read()) > 0){
                 char litera = (char) liczba;
@@ -96,11 +109,9 @@ public class Main {
 
             }
             throw new Exception("Niepoprawne cudzysłowy");
-
-
-
-
-        } else if(znak == '+' || znak == '-' || znak == '*' || znak == '/' || znak == '~' ||znak == '>' || znak == '<' || znak == '(' || znak == ')' || znak == '[' || znak == ']' || znak == '{' || znak == '}' || znak == '#' || znak == ';' ){
+        }
+        //symbole
+        else if(znak == '+' || znak == '-' || znak == '*' || znak == '/' || znak == '~' ||znak == '>' || znak == '<' || znak == '(' || znak == ')' || znak == '[' || znak == ']' || znak == '{' || znak == '}' || znak == '#' || znak == ';' ){
             switch(znak){
                 case '+': out.write("<symplus>"+(char)znak+"</symplus>"); break;
                 case '-': out.write("<symminus>"+(char)znak+"</symminus>"); break;
@@ -122,6 +133,19 @@ public class Main {
             liczba = in.read();
             sprawdzaj(liczba);
             return;
+        }
+        //komentarze
+        else if (znak =='@') {
+            int liczba;
+            while ((liczba = in.read()) > 0) {
+                char litera = (char) liczba;
+                if (litera == '\n') {
+                    sprawdzaj(litera);
+                    return;
+                }
+                ciag += litera;
+
+            }
         }
 
         sprawdzaj(in.read());
