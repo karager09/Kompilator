@@ -12,7 +12,7 @@ identyfikator
 	color:blue;
 }
 
-symif
+symif, symelse
 {
 	color:purple;
 }
@@ -27,14 +27,9 @@ symwhile
 	color:aqua;
 }
 
-symelse
-{
-	color:maroon;
-}
-
 symdo
 {
-	color:red;
+	color: sienna;
 }
 
 symreturn
@@ -59,4 +54,8 @@ symplus, symminus, symrazy, symdziel, symrozne, symwieksze, symmniejsze, symnawi
 symseparator
 {
 	color: sienna;
+}
+blad
+{
+	color: red;
 }

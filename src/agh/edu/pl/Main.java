@@ -40,23 +40,28 @@ public class Main {
         else if( znak >= '0' && znak <= '9'){
             int liczba;
             char litera;
-            boolean flaga=false;
+            int flaga=0;
             while((liczba = in.read()) > 0){
                 litera = (char) liczba;
-                //System.out.println(litera);
                 if (litera=='.'){
-                    if(flaga==false) {
+/*                    if(flaga==false) {
                         flaga = true;
                     } else {
                         //flaga=false;
-                        throw new Exception("Niepoprawna liczba"){};
-                    }
+                        //throw new Exception("Niepoprawna liczba"){};
+                    }*/
+                    flaga++;
                 }else if(litera < '0' || litera > '9'){
-
-                    out.write("<liczba>"+ciag+"</liczba>");
-
-                    sprawdzaj(litera);
-                    return;
+                    if (flaga<=1){
+                        out.write("<liczba>"+ciag+"</liczba>");
+                        sprawdzaj(litera);
+                        return;
+                    }else{
+                        System.out.println("Niepoprawna liczba " + ciag);
+                        out.write("<blad>"+ciag+"</blad>");
+                        sprawdzaj(litera);
+                        return;
+                    }
                 }
                 ciag +=litera;
             }
@@ -149,7 +154,8 @@ public class Main {
             }
         }
         else{
-            throw new Exception("Podałeś zły znak: " + (char)znak);
+            System.out.println("Zły znak : " + (char)znak);
+            out.write("<blad>"+(char)znak+"</blad>");
         }
 
         sprawdzaj(in.read());
