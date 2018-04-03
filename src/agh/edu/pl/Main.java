@@ -48,7 +48,8 @@ public class Main {
                     if(flaga==false) {
                         flaga = true;
                     } else {
-                        throw new Exception("Niepoprawna liczba");
+                        //flaga=false;
+                        throw new Exception("Niepoprawna liczba"){};
                     }
                 }else if(litera < '0' || litera > '9'){
 
@@ -146,6 +147,9 @@ public class Main {
                 ciag += litera;
 
             }
+        }
+        else{
+            throw new Exception("Podałeś zły znak: " + (char)znak);
         }
 
         sprawdzaj(in.read());
