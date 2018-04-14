@@ -1,0 +1,42 @@
+nazwa_funkcji arg0 arg1 ->		%strzałeczka przy funkcjach 
+	działanie1,		%"," odzielają instrukcje
+	działanie2.		%kończymy kropką, ostatnia wartość jest wartością zwracaną
+
+funkcja2 r ->
+	obw = (3.14*r)*r, %kolejność działań
+	| obw > 2*3.14*r -> print "jest wieksze";		% "|" reprezentuje "if" % ";" reprezentuje ze beda kolejne, połączone ze sobą warunki, "," bedzie oznaczal ze to była pojedncza instrukcja, kolejne ify są ze sobą nie połączone
+	| r > 5 -> {
+		| 2<3 -> print "tak"; 
+		| true -> print "nie"};		% niech {} będzie reprezentowało bloki instrukcji
+	| true -> print "jest mniejsze",
+	zrob_costam 4. % "| true" na koncu reprezentuje "else"
+
+
+
+silnia N ->
+	| N<=1 -> 1;
+	| true -> N * (silnia (N-1)). % ify też zwracają ostatnią warość ( jeśli w środku jest wyrażenie)
+
+
+	
+	
+zmienna_globalna = 7. % zmienna globalna zaimplementowana poza funkcjami, w środku jest lokalna i przysłania
+
+
+%główną funkcją będzie "main" która jest wykonywana po uruchomieniu programu
+
+main ar0 ar1 ->
+	wynik = nazwa_funkcji ar0 (ar1+2),
+	wynik = wynik/(3+1),
+	wynik.
+
+% null - specjalna warość zwracana, pusta, może np reprezentowac blad
+
+%ewentualnie moga tez być tablice
+
+	tab = [1,2,3],
+	fr = first tab,
+	% w tablicach mozna przechowywac dowolne wartosci
+	tab = [1,"costam", [5,6], 5.6],
+	nth_elem = nth tab 4,
+	
