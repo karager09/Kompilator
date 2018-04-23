@@ -29,29 +29,29 @@ public interface grammar_pdkVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitVariable(grammar_pdkParser.VariableContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link grammar_pdkParser#float}.
+	 * Visit a parse tree produced by {@link grammar_pdkParser#tokFloat}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitFloat(grammar_pdkParser.FloatContext ctx);
+	T visitTokFloat(grammar_pdkParser.TokFloatContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link grammar_pdkParser#integer}.
+	 * Visit a parse tree produced by {@link grammar_pdkParser#tokInteger}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitInteger(grammar_pdkParser.IntegerContext ctx);
+	T visitTokInteger(grammar_pdkParser.TokIntegerContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link grammar_pdkParser#string}.
+	 * Visit a parse tree produced by {@link grammar_pdkParser#tokString}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitString(grammar_pdkParser.StringContext ctx);
+	T visitTokString(grammar_pdkParser.TokStringContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link grammar_pdkParser#table}.
+	 * Visit a parse tree produced by {@link grammar_pdkParser#tokTable}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitTable(grammar_pdkParser.TableContext ctx);
+	T visitTokTable(grammar_pdkParser.TokTableContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link grammar_pdkParser#varExpr}.
 	 * @param ctx the parse tree

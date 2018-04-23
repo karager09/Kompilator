@@ -52,49 +52,49 @@ public class grammar_pdkBaseListener implements grammar_pdkListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterFloat(grammar_pdkParser.FloatContext ctx) { }
+	@Override public void enterTokFloat(grammar_pdkParser.TokFloatContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitFloat(grammar_pdkParser.FloatContext ctx) { }
+	@Override public void exitTokFloat(grammar_pdkParser.TokFloatContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterInteger(grammar_pdkParser.IntegerContext ctx) { }
+	@Override public void enterTokInteger(grammar_pdkParser.TokIntegerContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitInteger(grammar_pdkParser.IntegerContext ctx) { }
+	@Override public void exitTokInteger(grammar_pdkParser.TokIntegerContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterString(grammar_pdkParser.StringContext ctx) { }
+	@Override public void enterTokString(grammar_pdkParser.TokStringContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitString(grammar_pdkParser.StringContext ctx) { }
+	@Override public void exitTokString(grammar_pdkParser.TokStringContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterTable(grammar_pdkParser.TableContext ctx) { }
+	@Override public void enterTokTable(grammar_pdkParser.TokTableContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitTable(grammar_pdkParser.TableContext ctx) { }
+	@Override public void exitTokTable(grammar_pdkParser.TokTableContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *

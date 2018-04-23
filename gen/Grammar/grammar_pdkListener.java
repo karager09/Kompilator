@@ -38,45 +38,45 @@ public interface grammar_pdkListener extends ParseTreeListener {
 	 */
 	void exitVariable(grammar_pdkParser.VariableContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link grammar_pdkParser#float}.
+	 * Enter a parse tree produced by {@link grammar_pdkParser#tokFloat}.
 	 * @param ctx the parse tree
 	 */
-	void enterFloat(grammar_pdkParser.FloatContext ctx);
+	void enterTokFloat(grammar_pdkParser.TokFloatContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link grammar_pdkParser#float}.
+	 * Exit a parse tree produced by {@link grammar_pdkParser#tokFloat}.
 	 * @param ctx the parse tree
 	 */
-	void exitFloat(grammar_pdkParser.FloatContext ctx);
+	void exitTokFloat(grammar_pdkParser.TokFloatContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link grammar_pdkParser#integer}.
+	 * Enter a parse tree produced by {@link grammar_pdkParser#tokInteger}.
 	 * @param ctx the parse tree
 	 */
-	void enterInteger(grammar_pdkParser.IntegerContext ctx);
+	void enterTokInteger(grammar_pdkParser.TokIntegerContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link grammar_pdkParser#integer}.
+	 * Exit a parse tree produced by {@link grammar_pdkParser#tokInteger}.
 	 * @param ctx the parse tree
 	 */
-	void exitInteger(grammar_pdkParser.IntegerContext ctx);
+	void exitTokInteger(grammar_pdkParser.TokIntegerContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link grammar_pdkParser#string}.
+	 * Enter a parse tree produced by {@link grammar_pdkParser#tokString}.
 	 * @param ctx the parse tree
 	 */
-	void enterString(grammar_pdkParser.StringContext ctx);
+	void enterTokString(grammar_pdkParser.TokStringContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link grammar_pdkParser#string}.
+	 * Exit a parse tree produced by {@link grammar_pdkParser#tokString}.
 	 * @param ctx the parse tree
 	 */
-	void exitString(grammar_pdkParser.StringContext ctx);
+	void exitTokString(grammar_pdkParser.TokStringContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link grammar_pdkParser#table}.
+	 * Enter a parse tree produced by {@link grammar_pdkParser#tokTable}.
 	 * @param ctx the parse tree
 	 */
-	void enterTable(grammar_pdkParser.TableContext ctx);
+	void enterTokTable(grammar_pdkParser.TokTableContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link grammar_pdkParser#table}.
+	 * Exit a parse tree produced by {@link grammar_pdkParser#tokTable}.
 	 * @param ctx the parse tree
 	 */
-	void exitTable(grammar_pdkParser.TableContext ctx);
+	void exitTokTable(grammar_pdkParser.TokTableContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link grammar_pdkParser#varExpr}.
 	 * @param ctx the parse tree

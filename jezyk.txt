@@ -15,7 +15,7 @@ funkcja2 r ->
 
 silnia N ->
 	| N>=1 -> 1;
-	| true -> N * (silnia (N-1)). # ify tez zwracaja ostatnią warosc ( jesli w srodku jest wyrazenie)
+	| true -> N * (silnia (N- 1)). # ify tez zwracaja ostatnią warosc ( jesli w srodku jest wyrazenie)
 
 
 	

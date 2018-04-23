@@ -5,22 +5,22 @@ form : ( functionDefiniction | attribution)  '.';
 variable : VARIABLE;
 VARIABLE : [a-zA-Z][a-z0-9A-Z_]*;
 
-float : FLOAT;
+tokFloat : FLOAT;
 FLOAT : '-'? [0-9]+ '.' [0-9]+ ;
 
-integer : INTEGER ;
+tokInteger : INTEGER ;
 INTEGER : '-'? [0-9]+ ;
 
-string : STRING;
+tokString : STRING;
 STRING : '"' ~('"')* '"';
 
-table : ('['expr  (',' expr)* ']') | '[' ']';
+tokTable : ('['expr  (',' expr)* ']') | '[' ']';
 
 varExpr : variable
-    | float
-    | integer
-    | string
-    | table
+    | tokFloat
+    | tokInteger
+    | tokString
+    | tokTable
     | 'null'
     ;
 
@@ -37,19 +37,20 @@ functionDefiniction : variable (variable)* '->' clauses;
 
 clauses : clause (',' clause)*;
 
-clause : attribution
+clause : ifClause
+    | attribution
+    | expr
     | functionCall
-    | expr;
+    ;
 
 
-expr : ifClause
-    | '(' expr ')'
-    | functionCall
+expr : '(' expr ')'
     | expr multOp expr
     | expr addOp expr
     | expr compOp expr
     | prefixOp expr
     | varExpr
+    | functionCall
     ;
 
 ifExpr : '|' expr '->' blockInstruction;
@@ -79,5 +80,3 @@ compOp : '=='
        | '>='
        | '>'
        ;
-
-

@@ -38,28 +38,28 @@ public class grammar_pdkBaseVisitor<T> extends AbstractParseTreeVisitor<T> imple
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitFloat(grammar_pdkParser.FloatContext ctx) { return visitChildren(ctx); }
+	@Override public T visitTokFloat(grammar_pdkParser.TokFloatContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitInteger(grammar_pdkParser.IntegerContext ctx) { return visitChildren(ctx); }
+	@Override public T visitTokInteger(grammar_pdkParser.TokIntegerContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitString(grammar_pdkParser.StringContext ctx) { return visitChildren(ctx); }
+	@Override public T visitTokString(grammar_pdkParser.TokStringContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitTable(grammar_pdkParser.TableContext ctx) { return visitChildren(ctx); }
+	@Override public T visitTokTable(grammar_pdkParser.TokTableContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
