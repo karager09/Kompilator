@@ -1,5 +1,5 @@
 grammar grammar_pdk;
-forms : form+ EOF ;
+forms : form* EOF ;
 form : ( functionDefiniction | attribution)  '.';
 
 variable : VARIABLE;

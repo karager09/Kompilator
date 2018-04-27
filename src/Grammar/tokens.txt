@@ -1,0 +1,37 @@
+Spis tokenow:
+Oznaczenia jak w regex
+
+[a-zA-Z][a-z0-9A-Z_]*  = sym_variable
+'-'? [0-9]+ '.' [0-9]+  = sym_float
+'-'? [0-9]+ = sym_integer
+'"' ~('"')* '"' = sym_string
+'#' ~[\r\n]* '\r'? '\n' = sym_comment
+[ \t\r\n]+ = sym_white_space
+
+'.' = sym_end
+'[' = sym_bracket_square_l
+',' = sym_separator
+']' = sym_bracket_square_r
+'null' = sym_null
+'=' = sym_assign
+'->' = sym_fun_assign
+'(' = sym_bracket_round_l
+')' = sym_bracket_round_r
+'|' = sym_if
+';' = sym_if_or
+'{' = sym_block_statement_l
+'}' = sym_block_statement_r
+'+' = sym_add
+'-' = sym_sub
+'!' = sym_not
+'/' = sym_div
+'*' = sym_mul
+'%' = sym_rem
+'&&' = sym_and
+'||' = sym_or
+'==' = sym_equal
+'!=' = sym_not_equal
+'=<' = sym_equal_or_less
+'<' = sym_less
+'>=' = sym_equal_or_more
+'>' = sym_more
