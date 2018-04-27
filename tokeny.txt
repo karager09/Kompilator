@@ -20,7 +20,7 @@ symor		    |or	|
 symnot		    |not	|
 identyfikator	|l{l|c}	|
 liczba		    |c{c}|c{c}.{c}|
-symprzypisanie	|==	|
+symprzypisanie  |==	|
 symrownosc	    |=	|
 string		    |"{x}"	|
 symplus		    |+	|
@@ -34,7 +34,7 @@ symnawiasokragly|(|)	|
 symnawiaskwadratowy|[|]	|
 symnawiasklamrowy|{|}	|
 symhash		    |#	|
-symseparator	|;	|
+symseparator    |;	|
 
 blad		    |reszta niepasujacych
 
