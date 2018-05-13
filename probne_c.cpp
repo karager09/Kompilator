@@ -14,22 +14,25 @@ class Variable{
     short type;
     void * value;
 
-/*
-    Variable(short type){
-        this->type = type;
-        if(type == 0){
-            value = malloc(sizeof(int));
-            *((int*)value) = 5;
-        }
-    }
-*/
-
 
     Variable(int rValue){
         this->type = INT;
 
             value = malloc(sizeof(int));
             *((int*)value) = rValue;
+    }
+
+        Variable(double rValue){
+        this->type = DOUBLE;
+
+            value = malloc(sizeof(double));
+            *((double*)value) = rValue;
+    }
+
+        Variable(string rValue){
+        this->type = STRING;
+
+            value = (void *)new string(rValue);
     }
 
     Variable operator+(Variable v){
@@ -63,6 +66,9 @@ int main()
     cout << v.type<< ", "<< *((int*)(jakasFunkcja(v,v)).value)<< endl;
 
     cout << v.type<< ", "<< *((int*)(v+1).value) << endl;
+
+    cout << v.type<< ", "<< *((string*)(Variable("cos")).value) << endl;
+
 
     return 0;
 }
