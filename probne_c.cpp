@@ -53,13 +53,13 @@ class Variable{
             value = (void *)new string(rValue);
     }
 
-    Variable(Variable v){
+ /*   Variable(Variable v){
         this->type = v.type;
         if(v.type == INT){
             this->value = malloc(sizeof(int))
         }
 
-    }
+    }*/
 
     Variable(Variable rValue[]){
         this->type = TABLE;
@@ -67,14 +67,14 @@ class Variable{
             value = (void *) rValue;
     }
 
-    istream& operator>> (istream& wejscie, Variable v)
+    friend istream& operator>> (istream& wejscie, Variable  v)
     {
        wejscie >> v;
        return wejscie;
     }
-    ostream& operator<< (ostream& wyjscie, Variable v)
+    friend ostream& operator<< (ostream& wyjscie, Variable v)
     {
-       wyjscie << v;
+       wyjscie << v.value;
        return wyjscie;
     }
 
@@ -120,6 +120,9 @@ class Variable{
                      return Variable(*((double*)this->value) - *((double*)v.value));
                  }
          }
+    }
+
+
     Variable operator*(Variable v){
         if(this->type == INT){
             if(v.type==INT){
@@ -133,6 +136,7 @@ class Variable{
             } else if (v.type==DOUBLE){
                 return Variable(*((double*)this->value) * *((double*)v.value));
             }
+        }
     }
 
 };
@@ -171,5 +175,9 @@ int main()
     v = *((Variable*)vt.value);
     //cout << *(int *)(((Variable*)vt.value)[1].value) << endl;
     //cout << *((int*)v.value)<< endl;
+
+
+
+    cout << Variable(5) << Variable(5.67) << Variable("dasf");
     return 0;
 }
