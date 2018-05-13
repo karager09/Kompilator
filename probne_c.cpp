@@ -258,6 +258,13 @@ class Variable{
                 else
                     return false;
             }
+        } else if (this->type == STRING){
+            if(v.type==STRING){
+                if(*((string*)this->value) == *((string*)v.value)){
+                                    return true;
+                                else
+                                    return false;}
+            }
         }
     }
         Variable operator != (Variable v){
@@ -287,7 +294,15 @@ class Variable{
             }
         }
     }
-
+    int operator bool (variable v){
+        if(v.type == INT){
+            return *((int*)v.value);
+        } else if(v.type == DOUBLE){
+            return *((double*)v.value)
+        } else if(v.type == STRING){
+            return *((string*)v.value)
+        }
+    }
 };
 
 Variable fun(Variable x){
