@@ -35,6 +35,16 @@ class Variable{
             value = (void *)new string(rValue);
     }
 
+    istream& operator>> (istream& wejscie, Variable v)
+    {
+       wejscie >> v;
+       return wejscie;
+    }
+    ostream& operator<< (ostream& wyjscie, Variable v)
+    {
+       wyjscie << v;
+       return wyjscie;
+    }
     Variable operator+(Variable v){
         if(this->type == INT){
             if(v.type==INT){
@@ -63,7 +73,34 @@ class Variable{
         }
     }
 
-
+    Variable operator-(Variable v){
+             if(this->type == INT){
+                 if(v.type==INT){
+                     return Variable(*((int*)this->value) - *((int*)v.value));
+                 } else if (v.type==DOUBLE){
+                     return Variable(*((double*)this->value) - *((double*)v.value));
+                 }
+             } else if(this->type == DOUBLE){
+                 if(v.type==INT){
+                     return Variable(*((double*)this->value) - *((double*)v.value));
+                 } else if (v.type==DOUBLE){
+                     return Variable(*((double*)this->value) - *((double*)v.value));
+                 }
+         }
+    Variable operator*(Variable v){
+        if(this->type == INT){
+            if(v.type==INT){
+                return Variable(*((int*)this->value) * *((int*)v.value));
+            } else if (v.type==DOUBLE){
+                return Variable(*((double*)this->value) * *((double*)v.value));
+            }
+        } else if(this->type == DOUBLE){
+            if(v.type==INT){
+                return Variable(*((double*)this->value) * *((double*)v.value));
+            } else if (v.type==DOUBLE){
+                return Variable(*((double*)this->value) * *((double*)v.value));
+            }
+    }
 
 };
 
