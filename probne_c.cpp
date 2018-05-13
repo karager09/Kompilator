@@ -290,6 +290,11 @@ class Variable{
 
 };
 
+Variable fun(Variable x){
+    if(x == 0) return 0;
+    cout << x <<endl;
+    fun(x-1);
+}
 
 int main()
 {
@@ -326,6 +331,6 @@ int main()
     Variable z = x ;
     cout << z << "." <<endl;
 
-
+    fun(7);
     return 0;
 }
