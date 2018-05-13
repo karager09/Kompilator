@@ -69,12 +69,24 @@ class Variable{
 
     friend istream& operator>> (istream& wejscie, Variable  v)
     {
-       wejscie >> v;
+       if(v.type == INT){
+              wejscie >> *(int*)v.value;
+       } else if(v.type == DOUBLE{
+              wejscie >> *(double*)v.value;
+       }else if(v.type == STRING{
+              wejscie >> *(string*)v.value;
+       }
        return wejscie;
     }
     friend ostream& operator<< (ostream& wyjscie, Variable v)
     {
-       wyjscie << v.value;
+    if(v.type == INT){
+                  wyjscie >> *(int*)v.value;
+           } else if(v.type == DOUBLE{
+                  wyjscie >> *(double*)v.value;
+           }else if(v.type == STRING{
+                  wyjscie >> *(string*)v.value;
+           }
        return wyjscie;
     }
 
