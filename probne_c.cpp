@@ -34,11 +34,14 @@ class Variable{
 
     Variable operator+(Variable v){
         if(this->type == INT){
-            return Variable(*((int*)this->value) + *((int*)v.value));
+            if(v.type==INT){
+                return Variable(*((int*)this->value) + *((int*)v.value));
+            }
         } else if(this->type == DOUBLE){
             return Variable(*((double*)this->value) + *((double*)v.value));
         }
     }
+
 
 
 };
