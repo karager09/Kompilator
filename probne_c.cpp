@@ -3,6 +3,7 @@
 #include <string>
 #include <cstdio>
 
+
 #define INT 0
 #define DOUBLE 1
 #define STRING 2
@@ -21,8 +22,9 @@ string to_string(int i){
 }
 
 string to_string(double d){
+
     string tmp;
-    sprintf((char*)tmp.c_str(), "%f", d);
+    sprintf((char*)tmp.c_str(), "%g", d);
     return tmp.c_str();
 }
 
@@ -35,57 +37,65 @@ class Variable{
 
     Variable(int rValue){
         this->type = INT;
-
-            value = malloc(sizeof(int));
-            *((int*)value) = rValue;
+        value = malloc(sizeof(int));
+        *((int*)value) = rValue;
     }
 
         Variable(double rValue){
-        this->type = DOUBLE;
-
-            value = malloc(sizeof(double));
-            *((double*)value) = rValue;
+        type = DOUBLE;
+        value = malloc(sizeof(double));
+        *((double*)value) = rValue;
     }
 
         Variable(string rValue){
-        this->type = STRING;
-
-            value = (void *)new string(rValue);
+        type = STRING;
+        value = (void *)new string(rValue);
     }
 
- /*   Variable(Variable v){
-        this->type = v.type;
+    Variable(const Variable & v){
         if(v.type == INT){
-            this->value = malloc(sizeof(int))
+            type = INT;
+            value = malloc(sizeof(int));
+            *((int*)value) = *(int *)v.value;
         }
 
-    }*/
+        if(v.type == DOUBLE){
+            type = DOUBLE;
+            value = malloc(sizeof(double));
+            *((double*)value) = *(double *)v.value;
+        }
 
-    Variable(Variable rValue[]){
+        if(v.type == STRING){
+            type = STRING;
+            value = (void *)new string(*(string *)v.value);
+        }
+    }
+
+ /*   Variable(Variable rValue[]){
         this->type = TABLE;
 
             value = (void *) rValue;
     }
-
-    friend istream& operator>> (istream& wejscie, Variable  v)
+*/
+    friend istream& operator>> (istream& wejscie, Variable & v)
     {
        if(v.type == INT){
               wejscie >> *(int*)v.value;
-       } else if(v.type == DOUBLE{
+       } else if(v.type == DOUBLE){
               wejscie >> *(double*)v.value;
-       }else if(v.type == STRING{
+       }else if(v.type == STRING){
               wejscie >> *(string*)v.value;
        }
        return wejscie;
     }
-    friend ostream& operator<< (ostream& wyjscie, Variable v)
+    friend ostream& operator<< (ostream& wyjscie, Variable &v)
     {
     if(v.type == INT){
-                  wyjscie >> *(int*)v.value;
-           } else if(v.type == DOUBLE{
-                  wyjscie >> *(double*)v.value;
-           }else if(v.type == STRING{
-                  wyjscie >> *(string*)v.value;
+                  wyjscie << *(int*)v.value;
+           } else if(v.type == DOUBLE){
+                  wyjscie << *(double*)v.value;
+           }else if(v.type == STRING){
+                  wyjscie << *(string*)v.value;
            }
        return wyjscie;
     }
@@ -95,25 +105,25 @@ class Variable{
                 if(v.type==INT){
                     return Variable(*((int*)this->value) + *((int*)v.value));
                 } else if (v.type==DOUBLE){
-                    return Variable(*((double*)this->value) + *((double*)v.value));
+                    return Variable(*((int*)this->value) + *((double*)v.value));
                 } else if(v.type==STRING){
                     return Variable(to_string(*(int *)this->value) + *(string *) v.value);
                 }
             } else if(this->type == DOUBLE){
                 if(v.type==INT){
-                    return Variable(*((double*)this->value) + *((double*)v.value));
+                    return Variable(*((double*)this->value) + *((int*)v.value));
                 } else if (v.type==DOUBLE){
                     return Variable(*((double*)this->value) + *((double*)v.value));
                 } else if(v.type==STRING){
-                    return Variable(to_string(*(int *)this->value) + *(string *) v.value);
+                    return Variable(to_string(*(double *)this->value) + *(string *) v.value);
                 }
             } else if(this->type == STRING){
                 if(v.type==INT){
-                    return Variable(to_string(*(int *)this->value) + *(string *) v.value);
+                    return Variable(*(string *) this->value+to_string(*(int *)v.value));
                 } else if (v.type==DOUBLE){
-                   return Variable(to_string(*(int *)this->value) + *(string *) v.value);
+                   return Variable(*(string *) this->value+to_string(*(double *)v.value));
                 } else if(v.type==STRING){
-                    return Variable((*(string *)this->value) + (*(string *)v.value));
+                    return Variable(*(string *)this->value+(*(string *)v.value));
                 }
             }
         }
@@ -123,11 +133,11 @@ class Variable{
                  if(v.type==INT){
                      return Variable(*((int*)this->value) - *((int*)v.value));
                  } else if (v.type==DOUBLE){
-                     return Variable(*((double*)this->value) - *((double*)v.value));
+                     return Variable(*(int*)this->value - *((double*)v.value));
                  }
              } else if(this->type == DOUBLE){
                  if(v.type==INT){
-                     return Variable(*((double*)this->value) - *((double*)v.value));
+                     return Variable(*((double*)this->value) -*((int*)v.value));
                  } else if (v.type==DOUBLE){
                      return Variable(*((double*)this->value) - *((double*)v.value));
                  }
@@ -140,13 +150,140 @@ class Variable{
             if(v.type==INT){
                 return Variable(*((int*)this->value) * *((int*)v.value));
             } else if (v.type==DOUBLE){
-                return Variable(*((double*)this->value) * *((double*)v.value));
+                return Variable(*((int*)this->value) * *((double*)v.value));
             }
         } else if(this->type == DOUBLE){
             if(v.type==INT){
-                return Variable(*((double*)this->value) * *((double*)v.value));
+                return Variable(*((double*)this->value) * *((int*)v.value));
             } else if (v.type==DOUBLE){
                 return Variable(*((double*)this->value) * *((double*)v.value));
+            }
+        }
+    }
+
+        Variable operator/(Variable v){
+        if(this->type == INT){
+            if(v.type==INT){
+                return Variable(*((int*)this->value) / *((int*)v.value));
+            } else if (v.type==DOUBLE){
+                return Variable(*((int*)this->value) / *((double*)v.value));
+            }
+        } else if(this->type == DOUBLE){
+            if(v.type==INT){
+                return Variable(*((double*)this->value) / *((int*)v.value));
+            } else if (v.type==DOUBLE){
+                return Variable(*((double*)this->value) / *((double*)v.value));
+            }
+        }
+    }
+
+        Variable operator > (Variable v){
+        if(this->type == INT){
+            if(v.type==INT){
+                if(*((int*)this->value) > *((int*)v.value))
+                    return true;
+                else
+                    return false;
+            } else if (v.type==DOUBLE){
+                if(*((int*)this->value) > *((double*)v.value))
+                    return true;
+                else
+                    return false;
+            }
+        } else if(this->type == DOUBLE){
+            if(v.type==INT){
+                if(*((double*)this->value) > *((int*)v.value))
+                    return true;
+                else
+                    return false;
+            } else if (v.type==DOUBLE){
+                if(*((double*)this->value) > *((double*)v.value))
+                    return true;
+                else
+                    return false;
+            }
+        }
+    }
+
+        Variable operator < (Variable v){
+        if(this->type == INT){
+            if(v.type==INT){
+                if(*((int*)this->value) < *((int*)v.value))
+                    return true;
+                else
+                    return false;
+            } else if (v.type==DOUBLE){
+                if(*((int*)this->value) < *((double*)v.value))
+                    return true;
+                else
+                    return false;
+            }
+        } else if(this->type == DOUBLE){
+            if(v.type==INT){
+                if(*((double*)this->value) < *((int*)v.value))
+                    return true;
+                else
+                    return false;
+            } else if (v.type==DOUBLE){
+                if(*((double*)this->value) < *((double*)v.value))
+                    return true;
+                else
+                    return false;
+            }
+        }
+    }
+
+        Variable operator == (Variable v){
+        if(this->type == INT){
+            if(v.type==INT){
+                if(*((int*)this->value) == *((int*)v.value))
+                    return true;
+                else
+                    return false;
+            } else if (v.type==DOUBLE){
+                if(*((int*)this->value) == *((double*)v.value))
+                    return true;
+                else
+                    return false;
+            }
+        } else if(this->type == DOUBLE){
+            if(v.type==INT){
+                if(*((double*)this->value) == *((int*)v.value))
+                    return true;
+                else
+                    return false;
+            } else if (v.type==DOUBLE){
+                if(*((double*)this->value) == *((double*)v.value))
+                    return true;
+                else
+                    return false;
+            }
+        }
+    }
+        Variable operator != (Variable v){
+        if(this->type == INT){
+            if(v.type==INT){
+                if(*((int*)this->value) != *((int*)v.value))
+                    return true;
+                else
+                    return false;
+            } else if (v.type==DOUBLE){
+                if(*((int*)this->value) != *((double*)v.value))
+                    return true;
+                else
+                    return false;
+            }
+        } else if(this->type == DOUBLE){
+            if(v.type==INT){
+                if(*((double*)this->value) != *((int*)v.value))
+                    return true;
+                else
+                    return false;
+            } else if (v.type==DOUBLE){
+                if(*((double*)this->value) != *((double*)v.value))
+                    return true;
+                else
+                    return false;
             }
         }
     }
@@ -154,20 +291,11 @@ class Variable{
 };
 
 
-Variable jakasFunkcja(Variable v1, Variable v2){
-
-    Variable result = Variable(*((int*)v1.value) + *((int*)v2.value));
-    return result;
-
-}
-
 int main()
 {
 
     Variable v = Variable(8);
     cout << v.type<< ", "<< *((int*)v.value)<< endl;
-
-    cout << v.type<< ", "<< *((int*)(jakasFunkcja(v,v)).value)<< endl;
 
     cout << v.type<< ", "<< *((int*)(v+1).value) << endl;
 
@@ -181,15 +309,23 @@ int main()
 
     //Variable vt = Variable({Variable(2),Variable(6)});
 
-    Variable vt = Variable(vtab);
+//    Variable vt = Variable(vtab);
 
 
-    v = *((Variable*)vt.value);
+//    v = *((Variable*)vt.value);
     //cout << *(int *)(((Variable*)vt.value)[1].value) << endl;
     //cout << *((int*)v.value)<< endl;
 
 
+    Variable vv = Variable(2.0) + Variable(2);
+    cout << vv << endl;
 
-    cout << Variable(5) << Variable(5.67) << Variable("dasf");
+
+    Variable x = 5;
+    Variable y = Variable(4.7);
+    Variable z = x ;
+    cout << z << "." <<endl;
+
+
     return 0;
 }
