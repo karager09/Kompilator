@@ -3,7 +3,7 @@ nazwa_funkcji arg0 arg1 ->		#strzałeczka przy funkcjach
 	dzialanie2.		#konczymy kropką, ostatnia wartosc jest wartoscią zwracaną
 
 funkcja2 r ->
-	obw = (3.14*r)*r, #kolejnosc dzialan
+	var obw = (3.14*r)*r, #kolejnosc dzialan
 	| obw > 2*3.14*r -> print "jest wieksze";		# "|" reprezentuje "if" % ";" reprezentuje ze beda kolejne, polaczone ze sobą warunki, "," bedzie oznaczal ze to byla pojedncza instrukcja, kolejne ify są ze soba nie polaczone
 	| r > 5 -> {
 		| 2<3 -> print "tak"; 
@@ -20,7 +20,7 @@ silnia N ->
 
 	
 	
-zmienna_globalna = 7. # zmienna globalna zaimplementowana poza funkcjami, w srodku jest lokalna i przyslania
+var zmienna_globalna = 7. # zmienna globalna zaimplementowana poza funkcjami, w srodku jest lokalna i przyslania
 
 
 #glowna funkcja bedzie "main" ktora jest wykonywana po uruchomieniu programu

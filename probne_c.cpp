@@ -260,10 +260,10 @@ class Variable{
             }
         } else if (this->type == STRING){
             if(v.type==STRING){
-                if(*((string*)this->value) == *((string*)v.value)){
+                if(*((string*)this->value) == *((string*)v.value))
                                     return true;
                                 else
-                                    return false;}
+                                    return false;
             }
         }
     }
@@ -294,19 +294,20 @@ class Variable{
             }
         }
     }
-    int operator bool (variable v){
-        if(v.type == INT){
-            return *((int*)v.value);
-        } else if(v.type == DOUBLE){
-            return *((double*)v.value)
-        } else if(v.type == STRING){
-            return *((string*)v.value)
+
+ explicit operator bool(){
+        if(type == INT){
+            return *((int*)value);
+        } else if(type == DOUBLE){
+            return *((double*)value);
+        } else if(type == STRING){
+            return *((string*)value) == "";
         }
     }
 };
 
 Variable fun(Variable x){
-    if(x == 0) return 0;
+    if(x == 1) return 0;
     cout << x <<endl;
     fun(x-1);
 }
@@ -341,11 +342,11 @@ int main()
     cout << vv << endl;
 
 
-    Variable x = 5;
+    Variable x = Variable("dsaf");
     Variable y = Variable(4.7);
-    Variable z = x ;
+    Variable z = (x == Variable("dsa")) ;
     cout << z << "." <<endl;
 
-    fun(7);
+    //fun(7);
     return 0;
 }

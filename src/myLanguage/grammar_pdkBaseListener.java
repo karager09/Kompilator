@@ -5,8 +5,11 @@ import org.antlr.v4.runtime.ParserRuleContext;
 import org.antlr.v4.runtime.tree.ErrorNode;
 import org.antlr.v4.runtime.tree.TerminalNode;
 
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 
 /**
  * This class provides an empty implementation of {@link grammar_pdkListener},
@@ -18,7 +21,15 @@ public class grammar_pdkBaseListener implements grammar_pdkListener {
 	private FileWriter out;
 	private void startPrinting(){
 		try {
+
+			//miejsce utworzenia pliku po translacji
 			out = new FileWriter("D:\\Studia\\Sem. 6\\Kompilatory\\Kompilator\\out.c");
+
+			//dodajemy klase ze zdefiniowanymi Variables
+			byte[] encoded = Files.readAllBytes(Paths.get("begining.txt"));
+			out.write(new String(encoded));
+
+
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -48,7 +59,6 @@ public class grammar_pdkBaseListener implements grammar_pdkListener {
 	 */
 	@Override public void enterForms(grammar_pdkParser.FormsContext ctx) {
 		startPrinting();
-		print("#include <stdio.h>\n#include <string>");
 
 	}
 	/**
@@ -154,7 +164,13 @@ public class grammar_pdkBaseListener implements grammar_pdkListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterAttribution(grammar_pdkParser.AttributionContext ctx) { }
+	@Override public void enterAttribution(grammar_pdkParser.AttributionContext ctx) {
+		//System.out.println(ctx.getChild(0) +":"+ctx.getRuleIndex() +":" + ctx.getText());
+		if ( ctx.getChild(0).getText().equals("var")){
+			print("\nVariable "+ctx.getChild(1).getText() +" = " + ctx.getChild(3).getText() + ";");
+		} else print("\n"+ctx.getChild(0).getText() +" = " + ctx.getChild(2).getText() + ";");
+
+	}
 	/**
 	 * {@inheritDoc}
 	 *
@@ -170,7 +186,12 @@ public class grammar_pdkBaseListener implements grammar_pdkListener {
 
 		if((ctx.getChild(0).getText()).equals("print")) {
 			print("\ncout << " + ctx.getChild(1).getText()+";");
-			//System.out.println("cout << " + ctx.getChild(1).getText()+";");
+
+		} else{
+
+			//print("\n" + ctx.getChild(0).getText() + "(");
+
+
 		}
 
 	}
@@ -188,7 +209,6 @@ public class grammar_pdkBaseListener implements grammar_pdkListener {
 	@Override public void enterFunctionDefiniction(grammar_pdkParser.FunctionDefinictionContext ctx) {
 		if((ctx.getChild(0).getText()).equals("main")) {
 			print("\nint main(){");
-
 		}
 
 	}

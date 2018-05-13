@@ -29,7 +29,8 @@ COMMENT : '#' ~[\r\n]* '\r'? '\n' -> skip ;
 
 WHITE_SPACE : [ \t\r\n]+ -> skip ;
 
-attribution : variable '=' expr;
+attribution : 'var' variable '=' expr
+    |variable '=' expr;
 
 functionCall : variable (expr)*;
 
