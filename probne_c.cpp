@@ -292,7 +292,14 @@ class Variable{
                 else
                     return false;
             }
-        }
+        } else if (this->type == STRING){
+                      if(v.type==STRING){
+                          if(*((string*)this->value) != *((string*)v.value)){
+                                              return true;
+                                          else
+                                              return false;}
+                      }
+                  }
     }
     int operator bool (variable v){
         if(v.type == INT){
