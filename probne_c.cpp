@@ -1,5 +1,7 @@
 #include <iostream>
 #include <stdlib.h>
+#include <string>
+#include <cstdio>
 
 #define INT 0
 #define DOUBLE 1
@@ -8,6 +10,22 @@
 
 using namespace std;
 
+
+string to_string(int i){
+    //char  buf [256];
+    //sprintf(buf, "%d", i);
+
+    string tmp;
+    sprintf((char*)tmp.c_str(), "%d", i);
+    return tmp.c_str();
+
+}
+
+string to_string(double d){
+    string tmp;
+    sprintf((char*)tmp.c_str(), "%f", d);
+    return tmp.c_str();
+}
 
 class Variable{
     public:
@@ -22,18 +40,27 @@ class Variable{
             *((int*)value) = rValue;
     }
 
-        Variable(double rValue){
+    Variable(double rValue){
         this->type = DOUBLE;
 
             value = malloc(sizeof(double));
             *((double*)value) = rValue;
     }
 
-        Variable(string rValue){
+    Variable(string rValue){
         this->type = STRING;
 
             value = (void *)new string(rValue);
     }
+
+
+    Variable(Variable rValue[]){
+        this->type = TABLE;
+
+            value = (void *) rValue;
+    }
+
+
 
     Variable operator+(Variable v){
         if(this->type == INT){
@@ -42,7 +69,7 @@ class Variable{
             } else if (v.type==DOUBLE){
                 return Variable(*((double*)this->value) + *((double*)v.value));
             } else if(v.type==STRING){
-                return Variable(*(to_string(this->value)) + *(to_string(v.value));
+                return Variable(to_string(*(int *)this->value) + *(string *) v.value);
             }
         } else if(this->type == DOUBLE){
             if(v.type==INT){
@@ -50,15 +77,15 @@ class Variable{
             } else if (v.type==DOUBLE){
                 return Variable(*((double*)this->value) + *((double*)v.value));
             } else if(v.type==STRING){
-                return Variable(*(to_string(this->value)) + *(to_string(v.value));
+                return Variable(to_string(*(int *)this->value) + *(string *) v.value);
             }
         } else if(this->type == STRING){
             if(v.type==INT){
-                return Variable(*(to_string(this->value)) + *(to_string(v.value));
+                return Variable(to_string(*(int *)this->value) + *(string *) v.value);
             } else if (v.type==DOUBLE){
-               return Variable(*(to_string(this->value)) + *(to_string(v.value));
+               return Variable(to_string(*(int *)this->value) + *(string *) v.value);
             } else if(v.type==STRING){
-                return Variable(*(to_string(this->value)) + *(to_string(v.value));
+                return Variable((*(string *)this->value) + (*(string *)v.value));
             }
         }
     }
@@ -86,6 +113,22 @@ int main()
     cout << v.type<< ", "<< *((int*)(v+1).value) << endl;
 
     cout << v.type<< ", "<< *((string*)(Variable("cos")).value) << endl;
+
+    //Variable v1 = Variable({Variable(2),Variable(6)});
+    //cout << v.type<< ", "<< *((int*)(((Variable[])v1).value[0]) << endl;
+    Variable vtab[] = {{Variable(2)},{Variable(6)}};
+
+    cout << * (int*)vtab[0].value << endl;
+
+    //Variable vt = Variable({Variable(2),Variable(6)});
+
+    Variable vt = Variable(vtab);
+
+
+    v = *((Variable*)vt.value);
+    //cout << *(int *)(((Variable*)vt.value)[1].value) << endl;
+    //cout << *((int*)v.value)<< endl;
+
 
 
     return 0;
