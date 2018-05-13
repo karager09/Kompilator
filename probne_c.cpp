@@ -39,9 +39,27 @@ class Variable{
         if(this->type == INT){
             if(v.type==INT){
                 return Variable(*((int*)this->value) + *((int*)v.value));
+            } else if (v.type==DOUBLE){
+                return Variable(*((double*)this->value) + *((double*)v.value));
+            } else if(v.type==STRING){
+                return Variable(*(to_string(this->value)) + *(to_string(v.value));
             }
         } else if(this->type == DOUBLE){
-            return Variable(*((double*)this->value) + *((double*)v.value));
+            if(v.type==INT){
+                return Variable(*((double*)this->value) + *((double*)v.value));
+            } else if (v.type==DOUBLE){
+                return Variable(*((double*)this->value) + *((double*)v.value));
+            } else if(v.type==STRING){
+                return Variable(*(to_string(this->value)) + *(to_string(v.value));
+            }
+        } else if(this->type == STRING){
+            if(v.type==INT){
+                return Variable(*(to_string(this->value)) + *(to_string(v.value));
+            } else if (v.type==DOUBLE){
+               return Variable(*(to_string(this->value)) + *(to_string(v.value));
+            } else if(v.type==STRING){
+                return Variable(*(to_string(this->value)) + *(to_string(v.value));
+            }
         }
     }
 
