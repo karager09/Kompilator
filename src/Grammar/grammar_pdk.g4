@@ -40,8 +40,9 @@ clauses : clause (',' clause)*;
 
 clause : ifClause
     | attribution
-    | expr
     | functionCall
+    | expr
+
     ;
 
 

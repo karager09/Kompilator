@@ -2,11 +2,14 @@ nazwa_funkcji arg0 arg1 ->		#strzałeczka przy funkcjach
 	dzialanie1,		#"," odzielają instrukcje
 	dzialanie2.		#konczymy kropką, ostatnia wartosc jest wartoscią zwracaną
 
+var zm_gl = 2.
+
 funkcja2 r ->
+    var r = 1+2*(5/6)- 4,
 	var obw = (3.14*r)*r, #kolejnosc dzialan
 	| obw > 2*3.14*r -> print "jest wieksze";		# "|" reprezentuje "if" % ";" reprezentuje ze beda kolejne, polaczone ze sobą warunki, "," bedzie oznaczal ze to byla pojedncza instrukcja, kolejne ify są ze soba nie polaczone
 	| r > 5 -> {
-		| 2<3 -> print "tak"; 
+		| 2<3 -> print "tak" nie;
 		| true -> print "nie"};		# niech {} będzie reprezentowalo bloki instrukcji
 	| true -> print "jest mniejsze",
 	zrob_costam 4. # "| true" na koncu reprezentuje "else"
@@ -26,10 +29,11 @@ var zmienna_globalna = 7. # zmienna globalna zaimplementowana poza funkcjami, w 
 #glowna funkcja bedzie "main" ktora jest wykonywana po uruchomieniu programu
 
 main ar0 ar1 ->
-	wynik = nazwa_funkcji ar0 (ar1+2),
+	var wynik = nazwa_funkcji arg0 (arg1+2),
 	wynik = wynik/(3+1),
-	print "costam"
-	wynik.
+	print wynik,
+	funkcja arg0 arg1 arg2,
+	null.
 
 # null - specjalna wartosc zwracana, pusta, moze np reprezentowac blad
 

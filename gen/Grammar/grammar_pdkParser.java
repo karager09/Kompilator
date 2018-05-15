@@ -853,11 +853,11 @@ public class grammar_pdkParser extends Parser {
 		public AttributionContext attribution() {
 			return getRuleContext(AttributionContext.class,0);
 		}
-		public ExprContext expr() {
-			return getRuleContext(ExprContext.class,0);
-		}
 		public FunctionCallContext functionCall() {
 			return getRuleContext(FunctionCallContext.class,0);
+		}
+		public ExprContext expr() {
+			return getRuleContext(ExprContext.class,0);
 		}
 		public ClauseContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
@@ -903,14 +903,14 @@ public class grammar_pdkParser extends Parser {
 				enterOuterAlt(_localctx, 3);
 				{
 				setState(125);
-				expr(0);
+				functionCall();
 				}
 				break;
 			case 4:
 				enterOuterAlt(_localctx, 4);
 				{
 				setState(126);
-				functionCall();
+				expr(0);
 				}
 				break;
 			}
@@ -1537,8 +1537,8 @@ public class grammar_pdkParser extends Parser {
 		"\2\2jh\3\2\2\2ko\5\6\4\2ln\5\6\4\2ml\3\2\2\2nq\3\2\2\2om\3\2\2\2op\3\2"+
 		"\2\2pr\3\2\2\2qo\3\2\2\2rs\7\n\2\2st\5\30\r\2t\27\3\2\2\2uz\5\32\16\2"+
 		"vw\7\5\2\2wy\5\32\16\2xv\3\2\2\2y|\3\2\2\2zx\3\2\2\2z{\3\2\2\2{\31\3\2"+
-		"\2\2|z\3\2\2\2}\u0082\5 \21\2~\u0082\5\22\n\2\177\u0082\5\34\17\2\u0080"+
-		"\u0082\5\24\13\2\u0081}\3\2\2\2\u0081~\3\2\2\2\u0081\177\3\2\2\2\u0081"+
+		"\2\2|z\3\2\2\2}\u0082\5 \21\2~\u0082\5\22\n\2\177\u0082\5\24\13\2\u0080"+
+		"\u0082\5\34\17\2\u0081}\3\2\2\2\u0081~\3\2\2\2\u0081\177\3\2\2\2\u0081"+
 		"\u0080\3\2\2\2\u0082\33\3\2\2\2\u0083\u0084\b\17\1\2\u0084\u0085\7\13"+
 		"\2\2\u0085\u0086\5\34\17\2\u0086\u0087\7\f\2\2\u0087\u008e\3\2\2\2\u0088"+
 		"\u0089\5$\23\2\u0089\u008a\5\34\17\5\u008a\u008e\3\2\2\2\u008b\u008e\5"+
