@@ -17,11 +17,19 @@ public interface grammar_pdkVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitForms(grammar_pdkParser.FormsContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link grammar_pdkParser#form}.
+	 * Visit a parse tree produced by the {@code form_functionDefiniction}
+	 * labeled alternative in {@link grammar_pdkParser#form}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitForm(grammar_pdkParser.FormContext ctx);
+	T visitForm_functionDefiniction(grammar_pdkParser.Form_functionDefinictionContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code form_attribution}
+	 * labeled alternative in {@link grammar_pdkParser#form}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitForm_attribution(grammar_pdkParser.Form_attributionContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link grammar_pdkParser#variable}.
 	 * @param ctx the parse tree
@@ -53,11 +61,47 @@ public interface grammar_pdkVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitTokTable(grammar_pdkParser.TokTableContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link grammar_pdkParser#varExpr}.
+	 * Visit a parse tree produced by the {@code varExpr_variable}
+	 * labeled alternative in {@link grammar_pdkParser#varExpr}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitVarExpr(grammar_pdkParser.VarExprContext ctx);
+	T visitVarExpr_variable(grammar_pdkParser.VarExpr_variableContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code varExpr_tokFloat}
+	 * labeled alternative in {@link grammar_pdkParser#varExpr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitVarExpr_tokFloat(grammar_pdkParser.VarExpr_tokFloatContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code varExpr_tokInteger}
+	 * labeled alternative in {@link grammar_pdkParser#varExpr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitVarExpr_tokInteger(grammar_pdkParser.VarExpr_tokIntegerContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code varExpr_tokString}
+	 * labeled alternative in {@link grammar_pdkParser#varExpr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitVarExpr_tokString(grammar_pdkParser.VarExpr_tokStringContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code var_Expr_tokTable}
+	 * labeled alternative in {@link grammar_pdkParser#varExpr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitVar_Expr_tokTable(grammar_pdkParser.Var_Expr_tokTableContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code varExpr_null}
+	 * labeled alternative in {@link grammar_pdkParser#varExpr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitVarExpr_null(grammar_pdkParser.VarExpr_nullContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link grammar_pdkParser#attribution}.
 	 * @param ctx the parse tree
@@ -83,17 +127,82 @@ public interface grammar_pdkVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitClauses(grammar_pdkParser.ClausesContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link grammar_pdkParser#clause}.
+	 * Visit a parse tree produced by the {@code clause_ifClause}
+	 * labeled alternative in {@link grammar_pdkParser#clause}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitClause(grammar_pdkParser.ClauseContext ctx);
+	T visitClause_ifClause(grammar_pdkParser.Clause_ifClauseContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link grammar_pdkParser#expr}.
+	 * Visit a parse tree produced by the {@code clause_attribution}
+	 * labeled alternative in {@link grammar_pdkParser#clause}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitExpr(grammar_pdkParser.ExprContext ctx);
+	T visitClause_attribution(grammar_pdkParser.Clause_attributionContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code clause_functionCall}
+	 * labeled alternative in {@link grammar_pdkParser#clause}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitClause_functionCall(grammar_pdkParser.Clause_functionCallContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code clause_expr}
+	 * labeled alternative in {@link grammar_pdkParser#clause}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitClause_expr(grammar_pdkParser.Clause_exprContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code expr_comp}
+	 * labeled alternative in {@link grammar_pdkParser#expr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitExpr_comp(grammar_pdkParser.Expr_compContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code expr_varExpr}
+	 * labeled alternative in {@link grammar_pdkParser#expr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitExpr_varExpr(grammar_pdkParser.Expr_varExprContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code expr_add}
+	 * labeled alternative in {@link grammar_pdkParser#expr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitExpr_add(grammar_pdkParser.Expr_addContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code expr_functionCall}
+	 * labeled alternative in {@link grammar_pdkParser#expr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitExpr_functionCall(grammar_pdkParser.Expr_functionCallContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code expr_mult}
+	 * labeled alternative in {@link grammar_pdkParser#expr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitExpr_mult(grammar_pdkParser.Expr_multContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code expr_bracket}
+	 * labeled alternative in {@link grammar_pdkParser#expr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitExpr_bracket(grammar_pdkParser.Expr_bracketContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code expr_prefix}
+	 * labeled alternative in {@link grammar_pdkParser#expr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitExpr_prefix(grammar_pdkParser.Expr_prefixContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link grammar_pdkParser#ifExpr}.
 	 * @param ctx the parse tree

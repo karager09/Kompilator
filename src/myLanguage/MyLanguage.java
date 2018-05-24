@@ -27,9 +27,14 @@ public class MyLanguage {
         grammar_pdkParser.FormsContext formsSentenceContext = parser.forms();
 
         // Walk it and attach our listener
-        ParseTreeWalker walker = new ParseTreeWalker();
-        grammar_pdkBaseListener listener = new grammar_pdkBaseListener();
-        walker.walk(listener, formsSentenceContext);
+
+//        ParseTreeWalker walker = new ParseTreeWalker();
+//        grammar_pdkBaseListener listener = new grammar_pdkBaseListener();
+//        walker.walk(listener, formsSentenceContext);
+
+            grammar_pdkVisitor visitor = new myVisitor();
+            visitor.visit(formsSentenceContext);
+
 
     } catch (IOException e) {
         e.printStackTrace();

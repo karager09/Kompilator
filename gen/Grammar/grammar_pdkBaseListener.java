@@ -28,13 +28,25 @@ public class grammar_pdkBaseListener implements grammar_pdkListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterForm(grammar_pdkParser.FormContext ctx) { }
+	@Override public void enterForm_functionDefiniction(grammar_pdkParser.Form_functionDefinictionContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitForm(grammar_pdkParser.FormContext ctx) { }
+	@Override public void exitForm_functionDefiniction(grammar_pdkParser.Form_functionDefinictionContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterForm_attribution(grammar_pdkParser.Form_attributionContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitForm_attribution(grammar_pdkParser.Form_attributionContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -100,13 +112,73 @@ public class grammar_pdkBaseListener implements grammar_pdkListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterVarExpr(grammar_pdkParser.VarExprContext ctx) { }
+	@Override public void enterVarExpr_variable(grammar_pdkParser.VarExpr_variableContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitVarExpr(grammar_pdkParser.VarExprContext ctx) { }
+	@Override public void exitVarExpr_variable(grammar_pdkParser.VarExpr_variableContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterVarExpr_tokFloat(grammar_pdkParser.VarExpr_tokFloatContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitVarExpr_tokFloat(grammar_pdkParser.VarExpr_tokFloatContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterVarExpr_tokInteger(grammar_pdkParser.VarExpr_tokIntegerContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitVarExpr_tokInteger(grammar_pdkParser.VarExpr_tokIntegerContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterVarExpr_tokString(grammar_pdkParser.VarExpr_tokStringContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitVarExpr_tokString(grammar_pdkParser.VarExpr_tokStringContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterVar_Expr_tokTable(grammar_pdkParser.Var_Expr_tokTableContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitVar_Expr_tokTable(grammar_pdkParser.Var_Expr_tokTableContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterVarExpr_null(grammar_pdkParser.VarExpr_nullContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitVarExpr_null(grammar_pdkParser.VarExpr_nullContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -160,25 +232,133 @@ public class grammar_pdkBaseListener implements grammar_pdkListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterClause(grammar_pdkParser.ClauseContext ctx) { }
+	@Override public void enterClause_ifClause(grammar_pdkParser.Clause_ifClauseContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitClause(grammar_pdkParser.ClauseContext ctx) { }
+	@Override public void exitClause_ifClause(grammar_pdkParser.Clause_ifClauseContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterExpr(grammar_pdkParser.ExprContext ctx) { }
+	@Override public void enterClause_attribution(grammar_pdkParser.Clause_attributionContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitExpr(grammar_pdkParser.ExprContext ctx) { }
+	@Override public void exitClause_attribution(grammar_pdkParser.Clause_attributionContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterClause_functionCall(grammar_pdkParser.Clause_functionCallContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitClause_functionCall(grammar_pdkParser.Clause_functionCallContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterClause_expr(grammar_pdkParser.Clause_exprContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitClause_expr(grammar_pdkParser.Clause_exprContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterExpr_comp(grammar_pdkParser.Expr_compContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitExpr_comp(grammar_pdkParser.Expr_compContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterExpr_varExpr(grammar_pdkParser.Expr_varExprContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitExpr_varExpr(grammar_pdkParser.Expr_varExprContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterExpr_add(grammar_pdkParser.Expr_addContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitExpr_add(grammar_pdkParser.Expr_addContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterExpr_functionCall(grammar_pdkParser.Expr_functionCallContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitExpr_functionCall(grammar_pdkParser.Expr_functionCallContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterExpr_mult(grammar_pdkParser.Expr_multContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitExpr_mult(grammar_pdkParser.Expr_multContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterExpr_bracket(grammar_pdkParser.Expr_bracketContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitExpr_bracket(grammar_pdkParser.Expr_bracketContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterExpr_prefix(grammar_pdkParser.Expr_prefixContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitExpr_prefix(grammar_pdkParser.Expr_prefixContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *

@@ -18,15 +18,29 @@ public interface grammar_pdkListener extends ParseTreeListener {
 	 */
 	void exitForms(grammar_pdkParser.FormsContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link grammar_pdkParser#form}.
+	 * Enter a parse tree produced by the {@code form_functionDefiniction}
+	 * labeled alternative in {@link grammar_pdkParser#form}.
 	 * @param ctx the parse tree
 	 */
-	void enterForm(grammar_pdkParser.FormContext ctx);
+	void enterForm_functionDefiniction(grammar_pdkParser.Form_functionDefinictionContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link grammar_pdkParser#form}.
+	 * Exit a parse tree produced by the {@code form_functionDefiniction}
+	 * labeled alternative in {@link grammar_pdkParser#form}.
 	 * @param ctx the parse tree
 	 */
-	void exitForm(grammar_pdkParser.FormContext ctx);
+	void exitForm_functionDefiniction(grammar_pdkParser.Form_functionDefinictionContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code form_attribution}
+	 * labeled alternative in {@link grammar_pdkParser#form}.
+	 * @param ctx the parse tree
+	 */
+	void enterForm_attribution(grammar_pdkParser.Form_attributionContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code form_attribution}
+	 * labeled alternative in {@link grammar_pdkParser#form}.
+	 * @param ctx the parse tree
+	 */
+	void exitForm_attribution(grammar_pdkParser.Form_attributionContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link grammar_pdkParser#variable}.
 	 * @param ctx the parse tree
@@ -78,15 +92,77 @@ public interface grammar_pdkListener extends ParseTreeListener {
 	 */
 	void exitTokTable(grammar_pdkParser.TokTableContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link grammar_pdkParser#varExpr}.
+	 * Enter a parse tree produced by the {@code varExpr_variable}
+	 * labeled alternative in {@link grammar_pdkParser#varExpr}.
 	 * @param ctx the parse tree
 	 */
-	void enterVarExpr(grammar_pdkParser.VarExprContext ctx);
+	void enterVarExpr_variable(grammar_pdkParser.VarExpr_variableContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link grammar_pdkParser#varExpr}.
+	 * Exit a parse tree produced by the {@code varExpr_variable}
+	 * labeled alternative in {@link grammar_pdkParser#varExpr}.
 	 * @param ctx the parse tree
 	 */
-	void exitVarExpr(grammar_pdkParser.VarExprContext ctx);
+	void exitVarExpr_variable(grammar_pdkParser.VarExpr_variableContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code varExpr_tokFloat}
+	 * labeled alternative in {@link grammar_pdkParser#varExpr}.
+	 * @param ctx the parse tree
+	 */
+	void enterVarExpr_tokFloat(grammar_pdkParser.VarExpr_tokFloatContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code varExpr_tokFloat}
+	 * labeled alternative in {@link grammar_pdkParser#varExpr}.
+	 * @param ctx the parse tree
+	 */
+	void exitVarExpr_tokFloat(grammar_pdkParser.VarExpr_tokFloatContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code varExpr_tokInteger}
+	 * labeled alternative in {@link grammar_pdkParser#varExpr}.
+	 * @param ctx the parse tree
+	 */
+	void enterVarExpr_tokInteger(grammar_pdkParser.VarExpr_tokIntegerContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code varExpr_tokInteger}
+	 * labeled alternative in {@link grammar_pdkParser#varExpr}.
+	 * @param ctx the parse tree
+	 */
+	void exitVarExpr_tokInteger(grammar_pdkParser.VarExpr_tokIntegerContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code varExpr_tokString}
+	 * labeled alternative in {@link grammar_pdkParser#varExpr}.
+	 * @param ctx the parse tree
+	 */
+	void enterVarExpr_tokString(grammar_pdkParser.VarExpr_tokStringContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code varExpr_tokString}
+	 * labeled alternative in {@link grammar_pdkParser#varExpr}.
+	 * @param ctx the parse tree
+	 */
+	void exitVarExpr_tokString(grammar_pdkParser.VarExpr_tokStringContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code var_Expr_tokTable}
+	 * labeled alternative in {@link grammar_pdkParser#varExpr}.
+	 * @param ctx the parse tree
+	 */
+	void enterVar_Expr_tokTable(grammar_pdkParser.Var_Expr_tokTableContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code var_Expr_tokTable}
+	 * labeled alternative in {@link grammar_pdkParser#varExpr}.
+	 * @param ctx the parse tree
+	 */
+	void exitVar_Expr_tokTable(grammar_pdkParser.Var_Expr_tokTableContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code varExpr_null}
+	 * labeled alternative in {@link grammar_pdkParser#varExpr}.
+	 * @param ctx the parse tree
+	 */
+	void enterVarExpr_null(grammar_pdkParser.VarExpr_nullContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code varExpr_null}
+	 * labeled alternative in {@link grammar_pdkParser#varExpr}.
+	 * @param ctx the parse tree
+	 */
+	void exitVarExpr_null(grammar_pdkParser.VarExpr_nullContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link grammar_pdkParser#attribution}.
 	 * @param ctx the parse tree
@@ -128,25 +204,137 @@ public interface grammar_pdkListener extends ParseTreeListener {
 	 */
 	void exitClauses(grammar_pdkParser.ClausesContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link grammar_pdkParser#clause}.
+	 * Enter a parse tree produced by the {@code clause_ifClause}
+	 * labeled alternative in {@link grammar_pdkParser#clause}.
 	 * @param ctx the parse tree
 	 */
-	void enterClause(grammar_pdkParser.ClauseContext ctx);
+	void enterClause_ifClause(grammar_pdkParser.Clause_ifClauseContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link grammar_pdkParser#clause}.
+	 * Exit a parse tree produced by the {@code clause_ifClause}
+	 * labeled alternative in {@link grammar_pdkParser#clause}.
 	 * @param ctx the parse tree
 	 */
-	void exitClause(grammar_pdkParser.ClauseContext ctx);
+	void exitClause_ifClause(grammar_pdkParser.Clause_ifClauseContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link grammar_pdkParser#expr}.
+	 * Enter a parse tree produced by the {@code clause_attribution}
+	 * labeled alternative in {@link grammar_pdkParser#clause}.
 	 * @param ctx the parse tree
 	 */
-	void enterExpr(grammar_pdkParser.ExprContext ctx);
+	void enterClause_attribution(grammar_pdkParser.Clause_attributionContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link grammar_pdkParser#expr}.
+	 * Exit a parse tree produced by the {@code clause_attribution}
+	 * labeled alternative in {@link grammar_pdkParser#clause}.
 	 * @param ctx the parse tree
 	 */
-	void exitExpr(grammar_pdkParser.ExprContext ctx);
+	void exitClause_attribution(grammar_pdkParser.Clause_attributionContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code clause_functionCall}
+	 * labeled alternative in {@link grammar_pdkParser#clause}.
+	 * @param ctx the parse tree
+	 */
+	void enterClause_functionCall(grammar_pdkParser.Clause_functionCallContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code clause_functionCall}
+	 * labeled alternative in {@link grammar_pdkParser#clause}.
+	 * @param ctx the parse tree
+	 */
+	void exitClause_functionCall(grammar_pdkParser.Clause_functionCallContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code clause_expr}
+	 * labeled alternative in {@link grammar_pdkParser#clause}.
+	 * @param ctx the parse tree
+	 */
+	void enterClause_expr(grammar_pdkParser.Clause_exprContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code clause_expr}
+	 * labeled alternative in {@link grammar_pdkParser#clause}.
+	 * @param ctx the parse tree
+	 */
+	void exitClause_expr(grammar_pdkParser.Clause_exprContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code expr_comp}
+	 * labeled alternative in {@link grammar_pdkParser#expr}.
+	 * @param ctx the parse tree
+	 */
+	void enterExpr_comp(grammar_pdkParser.Expr_compContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code expr_comp}
+	 * labeled alternative in {@link grammar_pdkParser#expr}.
+	 * @param ctx the parse tree
+	 */
+	void exitExpr_comp(grammar_pdkParser.Expr_compContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code expr_varExpr}
+	 * labeled alternative in {@link grammar_pdkParser#expr}.
+	 * @param ctx the parse tree
+	 */
+	void enterExpr_varExpr(grammar_pdkParser.Expr_varExprContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code expr_varExpr}
+	 * labeled alternative in {@link grammar_pdkParser#expr}.
+	 * @param ctx the parse tree
+	 */
+	void exitExpr_varExpr(grammar_pdkParser.Expr_varExprContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code expr_add}
+	 * labeled alternative in {@link grammar_pdkParser#expr}.
+	 * @param ctx the parse tree
+	 */
+	void enterExpr_add(grammar_pdkParser.Expr_addContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code expr_add}
+	 * labeled alternative in {@link grammar_pdkParser#expr}.
+	 * @param ctx the parse tree
+	 */
+	void exitExpr_add(grammar_pdkParser.Expr_addContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code expr_functionCall}
+	 * labeled alternative in {@link grammar_pdkParser#expr}.
+	 * @param ctx the parse tree
+	 */
+	void enterExpr_functionCall(grammar_pdkParser.Expr_functionCallContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code expr_functionCall}
+	 * labeled alternative in {@link grammar_pdkParser#expr}.
+	 * @param ctx the parse tree
+	 */
+	void exitExpr_functionCall(grammar_pdkParser.Expr_functionCallContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code expr_mult}
+	 * labeled alternative in {@link grammar_pdkParser#expr}.
+	 * @param ctx the parse tree
+	 */
+	void enterExpr_mult(grammar_pdkParser.Expr_multContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code expr_mult}
+	 * labeled alternative in {@link grammar_pdkParser#expr}.
+	 * @param ctx the parse tree
+	 */
+	void exitExpr_mult(grammar_pdkParser.Expr_multContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code expr_bracket}
+	 * labeled alternative in {@link grammar_pdkParser#expr}.
+	 * @param ctx the parse tree
+	 */
+	void enterExpr_bracket(grammar_pdkParser.Expr_bracketContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code expr_bracket}
+	 * labeled alternative in {@link grammar_pdkParser#expr}.
+	 * @param ctx the parse tree
+	 */
+	void exitExpr_bracket(grammar_pdkParser.Expr_bracketContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code expr_prefix}
+	 * labeled alternative in {@link grammar_pdkParser#expr}.
+	 * @param ctx the parse tree
+	 */
+	void enterExpr_prefix(grammar_pdkParser.Expr_prefixContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code expr_prefix}
+	 * labeled alternative in {@link grammar_pdkParser#expr}.
+	 * @param ctx the parse tree
+	 */
+	void exitExpr_prefix(grammar_pdkParser.Expr_prefixContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link grammar_pdkParser#ifExpr}.
 	 * @param ctx the parse tree
