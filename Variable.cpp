@@ -77,7 +77,9 @@ class Variable{
             value = (void *) rValue;
     }
 */
-    friend istream& operator>> (istream& wejscie, Variable & v)
+
+
+    friend istream& operator>> (istream& wejscie,const Variable & v)
     {
        if(v.type == INT){
               wejscie >> *(int*)v.value;
@@ -88,17 +90,9 @@ class Variable{
        }
        return wejscie;
     }
-    friend ostream& operator<< (ostream& wyjscie, Variable &v)
-    {
-    if(v.type == INT){
-                  wyjscie << *(int*)v.value;
-           } else if(v.type == DOUBLE){
-                  wyjscie << *(double*)v.value;
-           }else if(v.type == STRING){
-                  wyjscie << *(string*)v.value;
-           }
-       return wyjscie;
-    }
+
+    friend ostream& operator<< (ostream& wyjscie,const Variable &v);
+
 
     Variable operator+(Variable v){
             if(this->type == INT){
@@ -161,6 +155,13 @@ class Variable{
         }
     }
 
+/*
+    Variable operator*(double x){
+        if(this->type == DOUBLE) return Variable(*((double*)this->value) * x);
+        if(this->type == INT)  return Variable(*((int*)this->value) * x);
+    }
+*/
+
         Variable operator/(Variable v){
         if(this->type == INT){
             if(v.type==INT){
@@ -204,6 +205,7 @@ class Variable{
             }
         }
     }
+
 
         Variable operator < (Variable v){
         if(this->type == INT){
@@ -267,6 +269,16 @@ class Variable{
             }
         }
     }
+
+    Variable operator <= (Variable v){
+        return (*this) == v || (*this) < v;
+    }
+
+        Variable operator >= (Variable v){
+        return (*this) == v || (*this) > v;
+    }
+
+
         Variable operator != (Variable v){
         if(this->type == INT){
             if(v.type==INT){
@@ -302,7 +314,12 @@ class Variable{
                   }
     }
 
- explicit operator bool(){
+
+
+
+
+ explicit
+ operator bool(){
         if(type == INT){
             return *((int*)value);
         } else if(type == DOUBLE){
@@ -311,4 +328,18 @@ class Variable{
             return *((string*)value) == "";
         }
     }
+
 };
+
+
+ostream& operator<< (ostream& wyjscie,const Variable &v)
+    {
+    if(v.type == INT){
+                  wyjscie << *(int*)v.value;
+           } else if(v.type == DOUBLE){
+                  wyjscie << *(double*)v.value;
+           }else if(v.type == STRING){
+                  wyjscie << *(string*)v.value;
+           }
+       return wyjscie;
+    }

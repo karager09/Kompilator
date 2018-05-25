@@ -23,13 +23,13 @@ public class myVisitor extends grammar_pdkBaseVisitor<String>{
 
     int tabs = 0;
 
-    HashMap<String,LinkedList<String>> variables= new HashMap<String, LinkedList<String>>();
+    HashMap<String,LinkedList<String>> VARIABLES= new HashMap<String, LinkedList<String>>();
 
     private FileWriter out;
     private void startPrinting(){
         try {
 
-            //miejsce utworzenia pliku po translacji
+            //output definition
             out = new FileWriter("D:\\Studia\\Sem. 6\\Kompilatory\\Kompilator\\out.cpp");
 
             out.write("#include \"Variable.cpp\"\n\n");
@@ -66,6 +66,8 @@ public class myVisitor extends grammar_pdkBaseVisitor<String>{
     @Override
     public String visitForms(grammar_pdkParser.FormsContext ctx) {
         startPrinting();
+        //initialize scopes with global
+        VARIABLES.put("GLOBAL", new LinkedList<>());
         super.visitForms(ctx);
         stopPrinting();
         return "OK";
@@ -87,6 +89,7 @@ public class myVisitor extends grammar_pdkBaseVisitor<String>{
 
     @Override
     public String visitVariable(grammar_pdkParser.VariableContext ctx) {
+        //change "true" or "false" for 1 and 0
         if(ctx.VARIABLE().getText().equals("true")) print("1");
         else if(ctx.VARIABLE().getText().equals("false")) print("0");
         else print("_" + ctx.VARIABLE().getText());
@@ -95,19 +98,25 @@ public class myVisitor extends grammar_pdkBaseVisitor<String>{
 
     @Override
     public String visitTokFloat(grammar_pdkParser.TokFloatContext ctx) {
+        print("Variable(");
         print(ctx.FLOAT().getSymbol().getText());
+        print(")");
         return super.visitTokFloat(ctx);
     }
 
     @Override
     public String visitTokInteger(grammar_pdkParser.TokIntegerContext ctx) {
+        print("Variable(");
         print(ctx.INTEGER().getSymbol().getText());
+        print(")");
         return super.visitTokInteger(ctx);
     }
 
     @Override
     public String visitTokString(grammar_pdkParser.TokStringContext ctx) {
+        print("Variable(");
         print(ctx.STRING().getSymbol().getText());
+        print(")");
         return super.visitTokString(ctx);
     }
 
@@ -147,23 +156,38 @@ public class myVisitor extends grammar_pdkBaseVisitor<String>{
         return super.visitVarExpr_null(ctx);
     }
 
+    /**
+     * Find in witch function we are, if in none than it is "GLOBAL"
+     * We use it, when we want to find out, if we have to add "Variable" before new variable
+     * @param ctx function context
+     * @return  name of function
+     */
     String getFunctionName(ParserRuleContext ctx){
         while(ctx.getRuleIndex() != RULE_functionDefiniction && ctx.getRuleIndex() != RULE_forms) ctx = ctx.getParent();
             if(ctx.getRuleIndex() == RULE_functionDefiniction) return ctx.children.get(0).getText();
         return "GLOBAL";
     }
 
+    /**
+     * If we haven't used this variable before than we have to initialize it. (add "Variable")
+     * And add to VARIABLES (for further use)
+     * @param ctx
+     * @return
+     */
     @Override
     public String visitAttribution(grammar_pdkParser.AttributionContext ctx) {
-        if(!variables.containsKey(getFunctionName(ctx))){
-            LinkedList<String> ll = new LinkedList<String>();
-            ll.add(ctx.variable().VARIABLE().getSymbol().getText());
-            variables.put(getFunctionName(ctx), ll);
-            print("Variable ");
-        } else if(!variables.get(getFunctionName(ctx)).contains(ctx.variable().VARIABLE().getSymbol().getText())){
-            variables.get(getFunctionName(ctx)).add(ctx.variable().VARIABLE().getSymbol().getText());
-            print("Variable ");
+        if(!VARIABLES.get("GLOBAL").contains(ctx.variable().VARIABLE().getSymbol().getText())){
+            if(!VARIABLES.containsKey(getFunctionName(ctx))){
+                LinkedList<String> ll = new LinkedList<String>();
+                ll.add(ctx.variable().VARIABLE().getSymbol().getText());
+                VARIABLES.put(getFunctionName(ctx), ll);
+                print("Variable ");
+            } else if(!VARIABLES.get(getFunctionName(ctx)).contains(ctx.variable().VARIABLE().getSymbol().getText())){
+                VARIABLES.get(getFunctionName(ctx)).add(ctx.variable().VARIABLE().getSymbol().getText());
+                print("Variable ");
+            }
         }
+
         visit(ctx.variable());
         print(" = ");
         visit(ctx.expr());
@@ -172,25 +196,72 @@ public class myVisitor extends grammar_pdkBaseVisitor<String>{
         //return super.visitAttribution(ctx);
     }
 
+    /**
+     * There is place for user's functions calls
+     * or we want to specify another behaviour
+     * For example printing function, or loading variables etc.
+     * @param ctx
+     * @return
+     */
     @Override
     public String visitFunctionCall(grammar_pdkParser.FunctionCallContext ctx) {
-        visit(ctx.variable());
-        print("( ");
+        //if we want to print something
+        if(ctx.variable().VARIABLE().getSymbol().getText().equals("print")){
+            print("cout << ");
+            List<grammar_pdkParser.ExprContext> expr = ctx.expr();
+            for (int i = 0; i < expr.size(); i++) {
+                visit(expr.get(i));
+                if (i < expr.size() - 1) print("<< ");
+            }
 
-        List<grammar_pdkParser.ExprContext> expr = ctx.expr();
-        for (int i = 0; i < expr.size(); i++) {
-            visit(expr.get(i));
-            if(i < expr.size() - 1) print(", ");
+            //if we want to load some variable from user
+        }else if(ctx.variable().VARIABLE().getSymbol().getText().equals("get")){
+            //we need to initialize it first
+            if(!VARIABLES.containsKey(getFunctionName(ctx)) ||(VARIABLES.containsKey(getFunctionName(ctx)) && !VARIABLES.get(getFunctionName(ctx)).contains(ctx.expr(0).getText()))){
+                if(!VARIABLES.containsKey(getFunctionName(ctx))){
+                    LinkedList<String> ll = new LinkedList<String>();
+                    VARIABLES.put(getFunctionName(ctx), ll);
+                }
+
+                VARIABLES.get(getFunctionName(ctx)).add(ctx.expr(0).getText());
+
+                print("Variable ");
+                visit(ctx.expr(0));
+                print(" = Variable(\"\");\n");
+                for (int t = 0; t < tabs; t++) print("\t");
+
+            }
+
+            print("cin >> ");
+            visit(ctx.expr(0));
+        //in other cases it just normal function
+        }else {
+
+
+            visit(ctx.variable());
+            print("( ");
+
+            List<grammar_pdkParser.ExprContext> expr = ctx.expr();
+            for (int i = 0; i < expr.size(); i++) {
+                visit(expr.get(i));
+                if (i < expr.size() - 1) print(", ");
+            }
+
+            print(" )");
         }
-
-        print(" )");
-
         return "OK";
     }
 
+    /**
+     * Function definition - proper printing
+     * Adding parameters of function to VARIABLES
+     * @param ctx
+     * @return
+     */
     @Override
     public String visitFunctionDefiniction(grammar_pdkParser.FunctionDefinictionContext ctx) {
         for (int t = 0; t < tabs; t++) print("\t");
+        if(!VARIABLES.containsKey(ctx.variable(0).getText())) VARIABLES.put(ctx.variable(0).getText(), new LinkedList<>());
         if(ctx.variable(0).VARIABLE().getText().equals("main")){
             print("int main(){\n");
 
@@ -210,6 +281,7 @@ public class myVisitor extends grammar_pdkBaseVisitor<String>{
             List<grammar_pdkParser.VariableContext> var = ctx.variable();
             for (int i = 1; i < var.size(); i++) {
                 print("Variable ");
+                VARIABLES.get(ctx.variable(0).getText()).add(var.get(i).VARIABLE().getSymbol().getText());
                 visit(var.get(i));
                 if (i < var.size() - 1) print(", ");
             }
@@ -222,8 +294,8 @@ public class myVisitor extends grammar_pdkBaseVisitor<String>{
                 if (i == clause.size() - 1) {
                     for (int t = 0; t < tabs; t++) print("\t");
                     print("return ");
-                    //jesli chcemy zwrocic zmienna
-                    if(variables.get(ctx.variable(0).getText()) != null && variables.get(ctx.variable(0).getText()).contains(clause.get(i).getChild(0).getChild(0).getText()))
+                    //if we want to return variable (not a function call)
+                    if(VARIABLES.get(ctx.variable(0).getText()) != null && VARIABLES.get(ctx.variable(0).getText()).contains(clause.get(i).getChild(0).getChild(0).getText()))
                         print("_"+clause.get(i).getChild(0).getChild(0).getText() +";\n");
                     else visit(clause.get(i));
                 }
@@ -383,8 +455,6 @@ public class myVisitor extends grammar_pdkBaseVisitor<String>{
 
     @Override
     public String visitTerminal(TerminalNode node) {
-        //print(node.getSymbol().getText());
-        //System.out.println(node.getSymbol().getText());
         return super.visitTerminal(node);
     }
 
