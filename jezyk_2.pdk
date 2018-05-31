@@ -1,0 +1,13 @@
+silnia N ->
+    x = 0,
+    | N > 0 -> x = N * (silnia (N-1));
+    | true -> x = 1,
+    x.
+
+sum a1 a2 ->
+    a1+a2.
+
+
+main ->
+    print (sum 2 3) "\n",
+    print (silnia (sum 2 3)).

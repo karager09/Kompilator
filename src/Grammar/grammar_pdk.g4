@@ -42,8 +42,8 @@ clauses : clause (',' clause)*;
 
 clause : ifClause       # clause_ifClause
     | attribution       # clause_attribution
-    | functionCall      # clause_functionCall
     | expr              # clause_expr
+    | functionCall      # clause_functionCall
     ;
 
 

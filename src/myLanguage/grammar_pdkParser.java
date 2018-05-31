@@ -1058,19 +1058,19 @@ public class grammar_pdkParser extends Parser {
 				}
 				break;
 			case 3:
-				_localctx = new Clause_functionCallContext(_localctx);
+				_localctx = new Clause_exprContext(_localctx);
 				enterOuterAlt(_localctx, 3);
 				{
 				setState(120);
-				functionCall();
+				expr(0);
 				}
 				break;
 			case 4:
-				_localctx = new Clause_exprContext(_localctx);
+				_localctx = new Clause_functionCallContext(_localctx);
 				enterOuterAlt(_localctx, 4);
 				{
 				setState(121);
-				expr(0);
+				functionCall();
 				}
 				break;
 			}
@@ -1830,7 +1830,7 @@ public class grammar_pdkParser extends Parser {
 		"\4\2hg\3\2\2\2il\3\2\2\2jh\3\2\2\2jk\3\2\2\2km\3\2\2\2lj\3\2\2\2mn\7\t"+
 		"\2\2no\5\30\r\2o\27\3\2\2\2pu\5\32\16\2qr\7\5\2\2rt\5\32\16\2sq\3\2\2"+
 		"\2tw\3\2\2\2us\3\2\2\2uv\3\2\2\2v\31\3\2\2\2wu\3\2\2\2x}\5 \21\2y}\5\22"+
-		"\n\2z}\5\24\13\2{}\5\34\17\2|x\3\2\2\2|y\3\2\2\2|z\3\2\2\2|{\3\2\2\2}"+
+		"\n\2z}\5\34\17\2{}\5\24\13\2|x\3\2\2\2|y\3\2\2\2|z\3\2\2\2|{\3\2\2\2}"+
 		"\33\3\2\2\2~\177\b\17\1\2\177\u0080\7\n\2\2\u0080\u0081\5\34\17\2\u0081"+
 		"\u0082\7\13\2\2\u0082\u0089\3\2\2\2\u0083\u0084\5$\23\2\u0084\u0085\5"+
 		"\34\17\5\u0085\u0089\3\2\2\2\u0086\u0089\5\20\t\2\u0087\u0089\5\24\13"+

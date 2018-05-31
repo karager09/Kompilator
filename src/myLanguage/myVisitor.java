@@ -253,7 +253,7 @@ public class myVisitor extends grammar_pdkBaseVisitor<String>{
     }
 
     /**
-     * Function definition - proper printing
+     * Function definition + proper printing
      * Adding parameters of function to VARIABLES
      * @param ctx
      * @return
@@ -295,7 +295,11 @@ public class myVisitor extends grammar_pdkBaseVisitor<String>{
                     for (int t = 0; t < tabs; t++) print("\t");
                     print("return ");
                     //if we want to return variable (not a function call)
-                    if(VARIABLES.get(ctx.variable(0).getText()) != null && VARIABLES.get(ctx.variable(0).getText()).contains(clause.get(i).getChild(0).getChild(0).getText()))
+//                    if(VARIABLES.get(ctx.variable(0).getText()) != null && VARIABLES.get(ctx.variable(0).getText()).contains(clause.get(i).getChild(0).getChild(0).getText()))
+//                        print("_"+clause.get(i).getChild(0).getChild(0).getText() +";\n");
+//                    else visit(clause.get(i));
+
+                    if(clause.get(i).getChild(0).getChildCount() == 1 && VARIABLES.get(ctx.variable(0).getText()) != null && VARIABLES.get(ctx.variable(0).getText()).contains(clause.get(i).getChild(0).getChild(0).getText()))
                         print("_"+clause.get(i).getChild(0).getChild(0).getText() +";\n");
                     else visit(clause.get(i));
                 }

@@ -256,18 +256,6 @@ public class grammar_pdkBaseListener implements grammar_pdkListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterClause_functionCall(grammar_pdkParser.Clause_functionCallContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitClause_functionCall(grammar_pdkParser.Clause_functionCallContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
 	@Override public void enterClause_expr(grammar_pdkParser.Clause_exprContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -275,6 +263,18 @@ public class grammar_pdkBaseListener implements grammar_pdkListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitClause_expr(grammar_pdkParser.Clause_exprContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterClause_functionCall(grammar_pdkParser.Clause_functionCallContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitClause_functionCall(grammar_pdkParser.Clause_functionCallContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *

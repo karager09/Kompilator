@@ -141,19 +141,19 @@ public interface grammar_pdkVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitClause_attribution(grammar_pdkParser.Clause_attributionContext ctx);
 	/**
-	 * Visit a parse tree produced by the {@code clause_functionCall}
-	 * labeled alternative in {@link grammar_pdkParser#clause}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitClause_functionCall(grammar_pdkParser.Clause_functionCallContext ctx);
-	/**
 	 * Visit a parse tree produced by the {@code clause_expr}
 	 * labeled alternative in {@link grammar_pdkParser#clause}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
 	T visitClause_expr(grammar_pdkParser.Clause_exprContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code clause_functionCall}
+	 * labeled alternative in {@link grammar_pdkParser#clause}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitClause_functionCall(grammar_pdkParser.Clause_functionCallContext ctx);
 	/**
 	 * Visit a parse tree produced by the {@code expr_comp}
 	 * labeled alternative in {@link grammar_pdkParser#expr}.

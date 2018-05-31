@@ -228,18 +228,6 @@ public interface grammar_pdkListener extends ParseTreeListener {
 	 */
 	void exitClause_attribution(grammar_pdkParser.Clause_attributionContext ctx);
 	/**
-	 * Enter a parse tree produced by the {@code clause_functionCall}
-	 * labeled alternative in {@link grammar_pdkParser#clause}.
-	 * @param ctx the parse tree
-	 */
-	void enterClause_functionCall(grammar_pdkParser.Clause_functionCallContext ctx);
-	/**
-	 * Exit a parse tree produced by the {@code clause_functionCall}
-	 * labeled alternative in {@link grammar_pdkParser#clause}.
-	 * @param ctx the parse tree
-	 */
-	void exitClause_functionCall(grammar_pdkParser.Clause_functionCallContext ctx);
-	/**
 	 * Enter a parse tree produced by the {@code clause_expr}
 	 * labeled alternative in {@link grammar_pdkParser#clause}.
 	 * @param ctx the parse tree
@@ -251,6 +239,18 @@ public interface grammar_pdkListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitClause_expr(grammar_pdkParser.Clause_exprContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code clause_functionCall}
+	 * labeled alternative in {@link grammar_pdkParser#clause}.
+	 * @param ctx the parse tree
+	 */
+	void enterClause_functionCall(grammar_pdkParser.Clause_functionCallContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code clause_functionCall}
+	 * labeled alternative in {@link grammar_pdkParser#clause}.
+	 * @param ctx the parse tree
+	 */
+	void exitClause_functionCall(grammar_pdkParser.Clause_functionCallContext ctx);
 	/**
 	 * Enter a parse tree produced by the {@code expr_comp}
 	 * labeled alternative in {@link grammar_pdkParser#expr}.
