@@ -13,7 +13,7 @@ public class MyLanguage {
     public static void main(String [] args) {
         grammar_pdkLexer lexer = null;
         try {
-            lexer = new grammar_pdkLexer(new ANTLRFileStream("D:\\Studia\\Sem. 6\\Kompilatory\\Kompilator\\jezyk_2.pdk"));
+            lexer = new grammar_pdkLexer(new ANTLRFileStream("D:\\Studia\\Sem. 6\\Kompilatory\\Kompilator\\jezyk2.pdk"));
 
 
 

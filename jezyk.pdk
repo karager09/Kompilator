@@ -7,8 +7,8 @@ zm_gl = 2.
 
 zrob_costam x ->
     print "Wpisz se jakas liczbe \n",
-    z = 0.0,
-    get z,
+    z = 1.5,
+    #get z,
     print "Argument funkcji to " x "\n",
     print "Podana przez Ciebie to " z "\n",
     print "Pomnozona przez 2.5 daje: " (z*2.5) "\n",
@@ -53,8 +53,8 @@ proba ar0 ar1 ->
 main ->
     zrob_costam 5,
     print "Podaj jakegos stringa:\n",
-    get h,
-    print h "\nSilnia z 5 wynosi ",
+    #get h,
+    #print h "\nSilnia z 5 wynosi ",
     print (silnia 5) "\n".
 
 # null - specjalna wartosc zwracana, pusta, moze np reprezentowac blad
