@@ -7,7 +7,7 @@
 #define INT 0
 #define DOUBLE 1
 #define STRING 2
-#define TABLE 3
+//#define TABLE 3
 
 using namespace std;
 
