@@ -33,7 +33,8 @@ public class Main {
         //biale znaki
         if((char)znak == ' ' || (char)znak == '\n' || (char)znak == '\t' || znak < 30){
             //koniec lini zapisywany dwoma znakami
-            if((char)znak != ' ' && (char)znak != '\t'){in.read();out.write("\n"+"<br>");}
+            if((char)znak != ' ' && (char)znak != '\t'){//in.read();
+            out.write("\n"+"<br>");}
              sprawdzaj((char)in.read());
         }
         //liczby
@@ -171,6 +172,8 @@ public class Main {
             out.write("<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<link rel=\"stylesheet\" type=\"text/css\" href=\"style.css\">\n<program>");
 
             int liczba;
+            //poczatek pliku zaczyna sie od jakis znakow
+            in.read();
             in.read();
 
             if((liczba = in.read()) != -1) sprawdzaj(liczba);
